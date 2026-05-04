@@ -1787,17 +1787,24 @@ function calculateOutput() {
   const score = result.tierScores;
 
   // Q4 activities count
+  // New activity list (8 options): 0=Conducir, 1=Lectura, 2=Pantallas, 3=TV,
+  // 4=Deportes, 5=Manuales detallados (cocinar/costura/jardinería), 6=Social, 7=Todas
   if (Array.isArray(a.q4_activities)) {
-    // "Todas las anteriores" (index 11) — interpret as full multi-distance lifestyle
-    if (a.q4_activities.includes(11)) {
+    // "Todas las anteriores son importantes para mí" (index 7) — full multi-distance lifestyle
+    if (a.q4_activities.includes(7)) {
       score.completa += 4;
     } else {
       const numActivities = a.q4_activities.length;
-      const hasDistance = a.q4_activities.includes(0) || a.q4_activities.includes(1);
-      const hasIntermediate = a.q4_activities.includes(3) || a.q4_activities.includes(4);
-      const hasNear = a.q4_activities.includes(2) || a.q4_activities.includes(9);
+      // Distance vision: driving + TV
+      const hasDistance = a.q4_activities.includes(0) || a.q4_activities.includes(3);
+      // Intermediate vision: screens (computer, phone, tablet)
+      const hasIntermediate = a.q4_activities.includes(2);
+      // Near vision: prolonged reading + detailed handwork
+      const hasNear = a.q4_activities.includes(1) || a.q4_activities.includes(5);
 
-      if (numActivities >= 6 && hasDistance && hasIntermediate && hasNear) {
+      // Threshold lowered from 6 to 5 to match the consolidated 8-option list
+      // (proportional to old 12-option list where >=6 captured "amplia")
+      if (numActivities >= 5 && hasDistance && hasIntermediate && hasNear) {
         score.completa += 3;
       } else if (hasDistance && hasIntermediate && !hasNear) {
         score.activa += 3;
