@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VixiOn Compass — iOPR</title>
+<meta name="description" content="Cuestionario del Perfil Visual — Instituto de Ojos de Puerto Rico">
 <style>
   :root {
     --navy: #00024F;
@@ -24,11 +25,8 @@
     --shadow-md: 0 4px 12px rgba(0,2,79,0.1);
     --radius: 12px;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
-
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
     font-size: var(--base-size);
@@ -39,806 +37,115 @@
     padding: 0;
     -webkit-font-smoothing: antialiased;
   }
-
-  /* Accessibility scaling */
   body.size-125 { --base-size: 18px; }
   body.size-150 { --base-size: 20px; }
   body.size-175 { --base-size: 22px; }
-
-  /* Header */
-  .header {
-    background: var(--white);
-    box-shadow: var(--shadow-sm);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-
-  .header-inner {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 16px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-  }
-
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .brand-logo {
-    width: 36px;
-    height: 36px;
-    background: var(--teal);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: 700;
-    font-size: 0.9em;
-  }
-
-  .brand-text {
-    line-height: 1.1;
-  }
-
-  .brand-name {
-    font-weight: 700;
-    color: var(--navy);
-    font-size: 0.95em;
-  }
-
-  .brand-sub {
-    color: var(--grey);
-    font-size: 0.7em;
-    letter-spacing: 0.05em;
-  }
-
-  .header-controls {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
-
-  .control-btn {
-    background: var(--grey-bg);
-    border: none;
-    border-radius: 8px;
-    padding: 8px 12px;
-    cursor: pointer;
-    font-size: 0.85em;
-    font-weight: 600;
-    color: var(--navy);
-    transition: all 0.15s;
-  }
-
-  .control-btn:hover {
-    background: var(--sand);
-  }
-
-  .control-btn.active {
-    background: var(--navy);
-    color: white;
-  }
-
-  /* Progress bar */
-  .progress-wrapper {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 12px 20px 0;
-  }
-
-  .progress-info {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.8em;
-    color: var(--grey);
-    margin-bottom: 8px;
-    font-weight: 500;
-  }
-
-  .progress-bar {
-    height: 6px;
-    background: var(--grey-bg);
-    border-radius: 3px;
-    overflow: hidden;
-  }
-
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--teal), var(--azure));
-    transition: width 0.4s ease;
-    border-radius: 3px;
-  }
-
-  .progress-message {
-    margin-top: 8px;
-    font-size: 0.85em;
-    color: var(--teal);
-    font-style: italic;
-    font-weight: 500;
-    min-height: 20px;
-  }
-
-  /* Main content */
-  .main {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 24px 20px 80px;
-  }
-
-  /* Welcome screen */
-  .welcome {
-    text-align: center;
-    padding: 24px 0;
-  }
-
-  .welcome h1 {
-    color: var(--navy);
-    font-size: 2em;
-    margin-bottom: 12px;
-    letter-spacing: -0.02em;
-  }
-
-  .welcome .compass-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 20px;
-    background: linear-gradient(135deg, var(--teal), var(--azure));
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow-md);
-  }
-
-  .welcome .compass-icon svg {
-    width: 44px;
-    height: 44px;
-    fill: white;
-  }
-
-  .welcome-tagline {
-    color: var(--teal);
-    font-size: 1.1em;
-    font-style: italic;
-    margin-bottom: 24px;
-  }
-
-  .welcome-invitation {
-    color: var(--navy);
-    font-size: 1.05em;
-    font-weight: 500;
-    line-height: 1.5;
-    margin: 28px auto 24px auto;
-    max-width: 480px;
-    text-align: center;
-    padding: 0 12px;
-  }
-
-  .welcome-card {
-    background: white;
-    border-radius: var(--radius);
-    padding: 24px;
-    margin: 24px 0;
-    text-align: left;
-    box-shadow: var(--shadow-sm);
-  }
-
-  .welcome-card.resume-card {
-    background: linear-gradient(135deg, #F0F7FF 0%, #E8F4FF 100%);
-    border-left: 4px solid var(--azure);
-  }
-
-  .welcome-card.resume-card h3 {
-    color: var(--azure);
-  }
-
-  .welcome-card h3 {
-    color: var(--navy);
-    margin-bottom: 12px;
-    font-size: 1.1em;
-  }
-
-  .welcome-card p {
-    color: var(--grey);
-    margin-bottom: 12px;
-    font-size: 0.95em;
-  }
-
-  .welcome-bullets {
-    list-style: none;
-    padding: 0;
-    margin: 12px 0;
-  }
-
-  .welcome-bullets li {
-    padding: 6px 0 6px 24px;
-    position: relative;
-    color: #333;
-    font-size: 0.95em;
-  }
-
-  .welcome-bullets li:before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    color: var(--teal);
-    font-weight: 700;
-  }
-
-  /* Question card */
-  .question-card {
-    background: white;
-    border-radius: var(--radius);
-    padding: 28px 24px;
-    box-shadow: var(--shadow-sm);
-    animation: slideIn 0.3s ease;
-  }
-
-  @keyframes slideIn {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .section-tag {
-    display: inline-block;
-    background: var(--sand);
-    color: var(--navy);
-    padding: 4px 12px;
-    border-radius: 100px;
-    font-size: 0.75em;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    margin-bottom: 16px;
-    text-transform: uppercase;
-  }
-
-  .question-text {
-    color: var(--navy);
-    font-size: 1.25em;
-    line-height: 1.4;
-    margin-bottom: 8px;
-    font-weight: 600;
-  }
-
-  .question-helper {
-    color: var(--grey);
-    font-size: 0.9em;
-    margin-bottom: 20px;
-    font-style: italic;
-  }
-
-  /* Tooltip / explanation */
-  .info-block {
-    background: var(--light-blue);
-    border-left: 3px solid var(--azure);
-    padding: 12px 16px;
-    border-radius: 0 8px 8px 0;
-    margin: 0 0 20px 0;
-    font-size: 0.88em;
-    color: #2a3f5f;
-  }
-
-  .info-block strong {
-    color: var(--azure);
-  }
-
-  .urgent-message {
-    background: #FFF3E0;
-    border-left: 4px solid #E65100;
-    padding: 14px 18px;
-    border-radius: 0 8px 8px 0;
-    margin: 18px 0 8px 0;
-    font-size: 0.92em;
-    color: #6B2C00;
-    line-height: 1.55;
-    font-weight: 500;
-    box-shadow: 0 2px 6px rgba(230, 81, 0, 0.08);
-  }
-
-  /* Options */
-  .options {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 16px;
-  }
-
-  .option {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 14px 18px;
-    background: var(--grey-bg);
-    border: 2px solid transparent;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.15s;
-    font-size: 0.95em;
-    color: #1a1a1a;
-    text-align: left;
-    width: 100%;
-    font-family: inherit;
-    line-height: 1.4;
-  }
-
-  .option:hover {
-    background: var(--sand);
-    border-color: var(--sand);
-  }
-
-  .option.selected {
-    background: var(--light-teal);
-    border-color: var(--teal);
-    font-weight: 500;
-  }
-
-  .option-mark {
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    border: 2px solid var(--grey-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-top: 1px;
-    transition: all 0.15s;
-  }
-
-  .option.selected .option-mark {
-    border-color: var(--teal);
-    background: var(--teal);
-  }
-
-  .option.selected .option-mark:after {
-    content: "";
-    width: 8px;
-    height: 8px;
-    background: white;
-    border-radius: 50%;
-  }
-
-  /* Multi-select shows squares */
-  .option.multi .option-mark {
-    border-radius: 4px;
-  }
-
-  .option.multi.selected .option-mark:after {
-    content: "✓";
-    color: white;
-    font-weight: 700;
-    background: transparent;
-    width: auto;
-    height: auto;
-    font-size: 14px;
-    line-height: 1;
-  }
-
-  /* Likert scale */
-  .likert {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 16px;
-  }
-
-  .likert-option {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 12px 16px;
-    background: var(--grey-bg);
-    border: 2px solid transparent;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.15s;
-    font-size: 0.92em;
-    width: 100%;
-    text-align: left;
-    font-family: inherit;
-  }
-
-  .likert-option:hover {
-    background: var(--sand);
-  }
-
-  .likert-option.selected {
-    background: var(--light-teal);
-    border-color: var(--teal);
-  }
-
-  .likert-num {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: var(--white);
-    color: var(--navy);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 1em;
-    flex-shrink: 0;
-    border: 2px solid var(--grey-light);
-  }
-
-  .likert-option.selected .likert-num {
-    background: var(--teal);
-    color: white;
-    border-color: var(--teal);
-  }
-
-  /* Text input */
-  .text-input {
-    width: 100%;
-    padding: 14px 16px;
-    border: 2px solid var(--grey-bg);
-    border-radius: 10px;
-    font-size: 1em;
-    font-family: inherit;
-    color: #1a1a1a;
-    background: var(--grey-bg);
-    transition: all 0.15s;
-    margin-top: 12px;
-  }
-
-  .text-input:focus {
-    outline: none;
-    border-color: var(--teal);
-    background: white;
-  }
-
-  textarea.text-input {
-    min-height: 100px;
-    resize: vertical;
-  }
-
-  /* Buttons */
-  .btn-row {
-    display: flex;
-    gap: 12px;
-    margin-top: 28px;
-  }
-
-  .btn {
-    padding: 14px 24px;
-    border-radius: 10px;
-    border: none;
-    font-size: 1em;
-    font-weight: 600;
-    font-family: inherit;
-    cursor: pointer;
-    transition: all 0.15s;
-    flex: 1;
-  }
-
-  .btn-primary {
-    background: var(--navy);
-    color: white;
-  }
-
-  .btn-primary:hover:not(:disabled) {
-    background: var(--azure);
-  }
-
-  .btn-primary:disabled {
-    background: var(--grey-light);
-    cursor: not-allowed;
-  }
-
-  .btn-secondary {
-    background: var(--grey-bg);
-    color: var(--navy);
-  }
-
-  .btn-secondary:hover {
-    background: var(--sand);
-  }
-
-  /* Halo illustration */
-  .halo-demo {
-    background: #1a1a2e;
-    border-radius: 8px;
-    padding: 20px;
-    margin: 16px 0;
-    text-align: center;
-    color: white;
-  }
-
-  .halo-demo svg {
-    margin: 0 auto;
-    display: block;
-  }
-
-  .halo-demo-label {
-    font-size: 0.85em;
-    color: #cbd5e0;
-    margin-top: 8px;
-    font-style: italic;
-  }
-
-  /* Confirmation page */
-  .confirmation {
-    background: white;
-    border-radius: var(--radius);
-    padding: 28px 24px;
-    box-shadow: var(--shadow-sm);
-  }
-
-  .confirmation h2 {
-    color: var(--navy);
-    margin-bottom: 12px;
-  }
-
-  .confirmation-summary {
-    background: var(--sand-light);
-    border-radius: 8px;
-    padding: 16px;
-    margin: 16px 0;
-  }
-
-  .confirmation-item {
-    padding: 10px 0;
-    border-bottom: 1px solid var(--sand);
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .confirmation-item:last-child {
-    border-bottom: none;
-  }
-
-  .confirmation-label {
-    font-size: 0.8em;
-    color: var(--grey);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-
-  .confirmation-value {
-    color: var(--navy);
-    font-weight: 500;
-  }
-
-  /* Output / Results page */
-  .output-screen {
-    background: white;
-    border-radius: var(--radius);
-    padding: 0;
-    box-shadow: var(--shadow-sm);
-    overflow: hidden;
-  }
-
-  .output-banner {
-    background: linear-gradient(135deg, var(--navy), var(--azure));
-    color: white;
-    padding: 32px 24px;
-    text-align: center;
-  }
-
-  .output-banner h2 {
-    font-size: 1.6em;
-    margin-bottom: 8px;
-  }
-
-  .output-banner p {
-    opacity: 0.9;
-    font-size: 1em;
-  }
-
-  .output-section {
-    padding: 24px;
-    border-bottom: 1px solid var(--grey-bg);
-  }
-
-  .output-section:last-child {
-    border-bottom: none;
-  }
-
-  .output-section h3 {
-    color: var(--navy);
-    font-size: 1.1em;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .output-section p {
-    color: #333;
-    font-size: 0.95em;
-    line-height: 1.6;
-  }
-
-  .output-section.tech-recommendation {
-    background: linear-gradient(135deg, #F0F9FF 0%, #E6F4F1 100%);
-    border-left: 4px solid var(--teal);
-  }
-
-  .output-section.tech-recommendation h3 {
-    color: var(--teal);
-  }
-
-  .tech-card {
-    background: white;
-    border-radius: 10px;
-    padding: 16px 18px;
-    margin: 12px 0;
-    box-shadow: 0 2px 8px rgba(0, 168, 137, 0.08);
-    border: 1px solid rgba(0, 168, 137, 0.15);
-  }
-
-  .tech-card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 4px;
-  }
-
-  .tech-card-name {
-    font-size: 1.15em;
-    font-weight: 700;
-    color: var(--navy);
-  }
-
-  .tech-card-badge {
-    background: var(--teal);
-    color: white;
-    padding: 3px 10px;
-    border-radius: 12px;
-    font-size: 0.72em;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-  }
-
-  .tech-card-subtitle {
-    color: var(--azure);
-    font-size: 0.88em;
-    font-weight: 500;
-    margin-bottom: 10px;
-    font-style: italic;
-  }
-
-  .tech-card-desc {
-    color: #333;
-    font-size: 0.92em;
-    line-height: 1.55;
-    margin: 0;
-  }
-
-  .toggle-clinical {
-    background: var(--grey-bg);
-    padding: 16px 24px;
-    text-align: center;
-    cursor: pointer;
-    color: var(--azure);
-    font-weight: 600;
-    font-size: 0.9em;
-    border-top: 2px dashed var(--grey-light);
-  }
-
-  .toggle-clinical:hover {
-    background: var(--sand);
-  }
-
-  /* Clinical output (hidden by default — shown only via toggle) */
-  .clinical-output {
-    display: none;
-    background: #f9fafb;
-    border-top: 3px solid var(--navy);
-  }
-
-  .clinical-output.visible {
-    display: block;
-  }
-
-  .clinical-section {
-    padding: 20px 24px;
-    border-bottom: 1px solid #e5e7eb;
-  }
-
-  .clinical-section h4 {
-    color: var(--navy);
-    font-size: 0.95em;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 12px;
-  }
-
-  .clinical-line {
-    display: flex;
-    margin-bottom: 8px;
-    font-size: 0.92em;
-  }
-
-  .clinical-label {
-    font-weight: 600;
-    color: var(--navy);
-    min-width: 130px;
-  }
-
-  .clinical-value {
-    flex: 1;
-    color: #333;
-  }
-
-  .badge {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 100px;
-    font-size: 0.78em;
-    font-weight: 600;
-    margin-right: 6px;
-    margin-bottom: 4px;
-  }
-
-  .badge-via {
-    background: var(--light-teal);
-    color: var(--navy);
-  }
-
-  .badge-tier {
-    background: var(--light-blue);
-    color: var(--navy);
-  }
-
-  .badge-red {
-    background: var(--light-red);
-    color: #6b1414;
-  }
-
-  .badge-yellow {
-    background: var(--light-amber);
-    color: #6b4a14;
-  }
-
-  .badge-green {
-    background: var(--light-teal);
-    color: #0a4a3a;
-  }
-
-  .clinical-narrative {
-    background: white;
-    padding: 14px 16px;
-    border-radius: 8px;
-    border-left: 3px solid var(--teal);
-    margin: 12px 0;
-    font-size: 0.92em;
-    line-height: 1.5;
-    color: #333;
-  }
-
-  .rule-trace {
-    background: white;
-    padding: 12px 14px;
-    border-radius: 6px;
-    margin: 6px 0;
-    font-size: 0.85em;
-    font-family: 'SF Mono', Monaco, monospace;
-    color: var(--grey);
-    border: 1px solid #e5e7eb;
-  }
-
-  /* Footer */
-  .footer {
-    text-align: center;
-    padding: 24px;
-    color: var(--grey-light);
-    font-size: 0.8em;
-  }
-
-  /* Mobile */
+  .header { background: var(--white); box-shadow: var(--shadow-sm); position: sticky; top: 0; z-index: 100; }
+  .header-inner { max-width: 720px; margin: 0 auto; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand-logo { width: 36px; height: 36px; background: var(--teal); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 0.9em; }
+  .brand-text { line-height: 1.1; }
+  .brand-name { font-weight: 700; color: var(--navy); font-size: 0.95em; }
+  .brand-sub { color: var(--grey); font-size: 0.7em; letter-spacing: 0.05em; }
+  .header-controls { display: flex; gap: 8px; align-items: center; }
+  .control-btn { background: var(--grey-bg); border: none; border-radius: 8px; padding: 8px 12px; cursor: pointer; font-size: 0.85em; font-weight: 600; color: var(--navy); transition: all 0.15s; }
+  .control-btn:hover { background: var(--sand); }
+  .control-btn:focus-visible { outline: 2px solid var(--azure); outline-offset: 2px; }
+  .control-btn.active { background: var(--navy); color: white; }
+  .progress-wrapper { max-width: 720px; margin: 0 auto; padding: 12px 20px 0; }
+  .progress-info { display: flex; justify-content: space-between; font-size: 0.8em; color: var(--grey); margin-bottom: 8px; font-weight: 500; }
+  .progress-bar { height: 6px; background: var(--grey-bg); border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--teal), var(--azure)); transition: width 0.4s ease; border-radius: 3px; }
+  .progress-message { margin-top: 8px; font-size: 0.85em; color: var(--teal); font-style: italic; font-weight: 500; min-height: 20px; }
+  .main { max-width: 720px; margin: 0 auto; padding: 24px 20px 80px; }
+  .welcome { text-align: center; padding: 24px 0; }
+  .welcome h1 { color: var(--navy); font-size: 2em; margin-bottom: 12px; letter-spacing: -0.02em; }
+  .welcome .compass-icon { width: 80px; height: 80px; margin: 0 auto 20px; background: linear-gradient(135deg, var(--teal), var(--azure)); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-md); }
+  .welcome .compass-icon svg { width: 44px; height: 44px; fill: white; }
+  .welcome-tagline { color: var(--teal); font-size: 1.1em; font-style: italic; margin-bottom: 24px; }
+  .welcome-invitation { color: var(--navy); font-size: 1.05em; font-weight: 500; line-height: 1.5; margin: 28px auto 24px auto; max-width: 480px; text-align: center; padding: 0 12px; }
+  .welcome-card { background: white; border-radius: var(--radius); padding: 24px; margin: 24px 0; text-align: left; box-shadow: var(--shadow-sm); }
+  .welcome-card.resume-card { background: linear-gradient(135deg, #F0F7FF 0%, #E8F4FF 100%); border-left: 4px solid var(--azure); }
+  .welcome-card.resume-card h3 { color: var(--azure); }
+  .welcome-card h3 { color: var(--navy); margin-bottom: 12px; font-size: 1.1em; }
+  .welcome-card p { color: var(--grey); margin-bottom: 12px; font-size: 0.95em; }
+  .welcome-bullets { list-style: none; padding: 0; margin: 12px 0; }
+  .welcome-bullets li { padding: 6px 0 6px 24px; position: relative; color: #333; font-size: 0.95em; }
+  .welcome-bullets li:before { content: "✓"; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
+  .question-card { background: white; border-radius: var(--radius); padding: 28px 24px; box-shadow: var(--shadow-sm); animation: slideIn 0.3s ease; }
+  @keyframes slideIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  .section-tag { display: inline-block; background: var(--sand); color: var(--navy); padding: 4px 12px; border-radius: 100px; font-size: 0.75em; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 16px; text-transform: uppercase; }
+  .question-text { color: var(--navy); font-size: 1.25em; line-height: 1.4; margin-bottom: 8px; font-weight: 600; }
+  .question-helper { color: var(--grey); font-size: 0.9em; margin-bottom: 20px; font-style: italic; }
+  .info-block { background: var(--light-blue); border-left: 3px solid var(--azure); padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 0 0 20px 0; font-size: 0.88em; color: #2a3f5f; }
+  .info-block strong { color: var(--azure); }
+  .urgent-message { background: #FFF3E0; border-left: 4px solid #E65100; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 18px 0 8px 0; font-size: 0.92em; color: #6B2C00; line-height: 1.55; font-weight: 500; box-shadow: 0 2px 6px rgba(230, 81, 0, 0.08); }
+  .options { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+  .option { display: flex; align-items: flex-start; gap: 12px; padding: 14px 18px; background: var(--grey-bg); border: 2px solid transparent; border-radius: 10px; cursor: pointer; transition: all 0.15s; font-size: 0.95em; color: #1a1a1a; text-align: left; width: 100%; font-family: inherit; line-height: 1.4; }
+  .option:hover { background: var(--sand); border-color: var(--sand); }
+  .option:focus-visible { outline: 2px solid var(--azure); outline-offset: 2px; }
+  .option.selected { background: var(--light-teal); border-color: var(--teal); font-weight: 500; }
+  .option-mark { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--grey-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; transition: all 0.15s; }
+  .option.selected .option-mark { border-color: var(--teal); background: var(--teal); }
+  .option.selected .option-mark:after { content: ""; width: 8px; height: 8px; background: white; border-radius: 50%; }
+  .option.multi .option-mark { border-radius: 4px; }
+  .option.multi.selected .option-mark:after { content: "✓"; color: white; font-weight: 700; background: transparent; width: auto; height: auto; font-size: 14px; line-height: 1; }
+  .likert { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .likert-option { display: flex; align-items: center; gap: 14px; padding: 12px 16px; background: var(--grey-bg); border: 2px solid transparent; border-radius: 8px; cursor: pointer; transition: all 0.15s; font-size: 0.92em; width: 100%; text-align: left; font-family: inherit; }
+  .likert-option:hover { background: var(--sand); }
+  .likert-option:focus-visible { outline: 2px solid var(--azure); outline-offset: 2px; }
+  .likert-option.selected { background: var(--light-teal); border-color: var(--teal); }
+  .likert-num { width: 36px; height: 36px; border-radius: 50%; background: var(--white); color: var(--navy); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1em; flex-shrink: 0; border: 2px solid var(--grey-light); }
+  .likert-option.selected .likert-num { background: var(--teal); color: white; border-color: var(--teal); }
+  .text-input { width: 100%; padding: 14px 16px; border: 2px solid var(--grey-bg); border-radius: 10px; font-size: 1em; font-family: inherit; color: #1a1a1a; background: var(--grey-bg); transition: all 0.15s; margin-top: 12px; }
+  .text-input:focus { outline: none; border-color: var(--teal); background: white; }
+  textarea.text-input { min-height: 100px; resize: vertical; }
+  .btn-row { display: flex; gap: 12px; margin-top: 28px; }
+  .btn { padding: 14px 24px; border-radius: 10px; border: none; font-size: 1em; font-weight: 600; font-family: inherit; cursor: pointer; transition: all 0.15s; flex: 1; }
+  .btn:focus-visible { outline: 2px solid var(--azure); outline-offset: 2px; }
+  .btn-primary { background: var(--navy); color: white; }
+  .btn-primary:hover:not(:disabled) { background: var(--azure); }
+  .btn-primary:disabled { background: var(--grey-light); cursor: not-allowed; }
+  .btn-secondary { background: var(--grey-bg); color: var(--navy); }
+  .btn-secondary:hover { background: var(--sand); }
+  .halo-demo { background: #1a1a2e; border-radius: 8px; padding: 24px 16px; margin: 16px 0; text-align: center; color: white; }
+  .halo-demo svg { margin: 0 auto; display: block; max-width: 100%; height: auto; }
+  .halo-demo-label { font-size: 0.85em; color: #cbd5e0; margin-top: 12px; font-style: italic; }
+  .confirmation { background: white; border-radius: var(--radius); padding: 28px 24px; box-shadow: var(--shadow-sm); }
+  .confirmation h2 { color: var(--navy); margin-bottom: 12px; }
+  .confirmation-section { margin: 20px 0; }
+  .confirmation-section-header { color: var(--teal); font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 2px solid var(--light-teal); }
+  .confirmation-summary { background: var(--sand-light); border-radius: 8px; padding: 16px; margin: 8px 0; }
+  .confirmation-item { padding: 10px 0; border-bottom: 1px solid var(--sand); display: flex; flex-direction: column; gap: 4px; }
+  .confirmation-item:last-child { border-bottom: none; }
+  .confirmation-label { font-size: 0.8em; color: var(--grey); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+  .confirmation-value { color: var(--navy); font-weight: 500; }
+  .output-screen { background: white; border-radius: var(--radius); padding: 0; box-shadow: var(--shadow-sm); overflow: hidden; }
+  .output-banner { background: linear-gradient(135deg, var(--navy), var(--azure)); color: white; padding: 32px 24px; text-align: center; }
+  .output-banner h2 { font-size: 1.6em; margin-bottom: 8px; }
+  .output-banner p { opacity: 0.9; font-size: 1em; }
+  .output-section { padding: 24px; border-bottom: 1px solid var(--grey-bg); }
+  .output-section:last-child { border-bottom: none; }
+  .output-section h3 { color: var(--navy); font-size: 1.1em; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .output-section p { color: #333; font-size: 0.95em; line-height: 1.6; }
+  .toggle-clinical { background: var(--grey-bg); padding: 16px 24px; text-align: center; cursor: pointer; color: var(--azure); font-weight: 600; font-size: 0.9em; border-top: 2px dashed var(--grey-light); border-bottom: none; border-left: none; border-right: none; width: 100%; font-family: inherit; }
+  .toggle-clinical:hover { background: var(--sand); }
+  .clinical-output { display: none; background: #f9fafb; border-top: 3px solid var(--navy); }
+  .clinical-output.visible { display: block; }
+  .clinical-section { padding: 20px 24px; border-bottom: 1px solid #e5e7eb; }
+  .clinical-section h4 { color: var(--navy); font-size: 0.95em; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
+  .clinical-line { display: flex; margin-bottom: 8px; font-size: 0.92em; }
+  .clinical-label { font-weight: 600; color: var(--navy); min-width: 130px; }
+  .clinical-value { flex: 1; color: #333; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 100px; font-size: 0.78em; font-weight: 600; margin-right: 6px; margin-bottom: 4px; }
+  .badge-via { background: var(--light-teal); color: var(--navy); }
+  .badge-tier { background: var(--light-blue); color: var(--navy); }
+  .badge-red { background: var(--light-red); color: #6b1414; }
+  .badge-yellow { background: var(--light-amber); color: #6b4a14; }
+  .badge-green { background: var(--light-teal); color: #0a4a3a; }
+  .clinical-narrative { background: white; padding: 14px 16px; border-radius: 8px; border-left: 3px solid var(--teal); margin: 12px 0; font-size: 0.92em; line-height: 1.5; color: #333; }
+  .rule-trace { background: white; padding: 12px 14px; border-radius: 6px; margin: 6px 0; font-size: 0.85em; font-family: 'SF Mono', Monaco, monospace; color: var(--grey); border: 1px solid #e5e7eb; }
+  .footer { text-align: center; padding: 24px; color: var(--grey-light); font-size: 0.8em; }
   @media (max-width: 600px) {
     .header-inner { padding: 12px 16px; }
     .main { padding: 16px 16px 60px; }
@@ -850,67 +157,68 @@
     .control-btn { padding: 6px 10px; font-size: 0.78em; }
     .brand-name { font-size: 0.85em; }
   }
-
-  /* Hide elements when not active */
   .hidden { display: none !important; }
 </style>
 </head>
 <body>
-
 <div class="header">
   <div class="header-inner">
     <div class="brand">
-      <div class="brand-logo">VC</div>
+      <div class="brand-logo" aria-hidden="true">VC</div>
       <div class="brand-text">
         <div class="brand-name">VixiOn Compass</div>
         <div class="brand-sub" id="brandSub">INSTITUTO DE OJOS DE PUERTO RICO</div>
       </div>
     </div>
     <div class="header-controls">
-      <button class="control-btn" id="langBtn" onclick="toggleLang()">EN</button>
-      <button class="control-btn" id="sizeBtn" onclick="cycleSize()">A+</button>
+      <button class="control-btn" id="langBtn" onclick="toggleLang()" aria-label="Cambiar idioma">EN</button>
+      <button class="control-btn" id="sizeBtn" onclick="cycleSize()" aria-label="Aumentar tamaño de texto">A+</button>
     </div>
   </div>
 </div>
-
-<div class="progress-wrapper" id="progressWrapper" style="display:none;">
+<div class="progress-wrapper" id="progressWrapper" style="display:none;" role="region" aria-label="Progreso del cuestionario">
   <div class="progress-info">
     <span id="progressLabel">Pregunta 1 de 16</span>
     <span id="progressTime">~10 min</span>
   </div>
-  <div class="progress-bar">
+  <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
     <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
   </div>
-  <div class="progress-message" id="progressMessage"></div>
+  <div class="progress-message" id="progressMessage" aria-live="polite"></div>
 </div>
-
-<div class="main" id="main">
-  <!-- Content rendered by JS -->
-</div>
-
+<main class="main" id="main"></main>
 <div class="footer">
   Instituto de Ojos de Puerto Rico · iopr.com
-  <div id="autosaveIndicator" style="font-size:0.8em; color:#999; margin-top:4px; display:none;">
+  <div id="autosaveIndicator" style="font-size:0.8em; color:#999; margin-top:4px; display:none;" aria-live="polite">
     <span id="autosaveText">Sus respuestas se guardan automáticamente</span>
   </div>
 </div>
-
 <script>
-// ========== STATE ==========
+// ============================================================
+// VixiOn Compass v6.3 — corrección de nomenclatura + UI/UX
+// ============================================================
+// Cambios desde v6.2:
+//   1. tierMap: 3 tiers (Esencial / Equilibrada / Completa)
+//   2. tierScores: { esencial, equilibrada, completa } — fusionados activa+medida en equilibrada
+//   3. Override forzado: queratocono → Equilibrada (decisión clínica firme)
+//   4. tierMessageMap: mensaje de Equilibrada calibrado para Monofocal Plus + Apthera IC-8
+//   5. Halo demo: SVG inline (reemplaza base64 JPEG)
+//   6. Confirmation: agrupado por sección
+//   7. ARIA labels para accesibilidad
+//   8. Fix typo: "IC8" → "IC-8"
+// ============================================================
+
 let state = {
   currentScreen: 'welcome',
   currentQuestionIdx: 0,
   answers: {},
   lang: 'es',
-  sizeLevel: 0, // 0=normal, 1=125, 2=150, 3=175
+  sizeLevel: 0,
   showClinical: false
 };
-
-// ========== AUTO-SAVE (localStorage) ==========
 const STORAGE_KEY = 'vixionCompass_progress_v1';
 
 function saveProgress() {
-  // Only save if there's actual progress (past welcome screen with at least 1 answer)
   if (state.currentScreen === 'welcome') return;
   if (Object.keys(state.answers).length === 0) return;
   try {
@@ -922,7 +230,6 @@ function saveProgress() {
       savedAt: new Date().toISOString()
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(snapshot));
-    // Show subtle confirmation
     const indicator = document.getElementById('autosaveIndicator');
     const indicatorText = document.getElementById('autosaveText');
     if (indicator && indicatorText) {
@@ -930,32 +237,15 @@ function saveProgress() {
       indicator.style.display = 'block';
       indicator.style.opacity = '1';
       clearTimeout(window._autosaveTimer);
-      window._autosaveTimer = setTimeout(() => {
-        if (indicator) indicator.style.opacity = '0.5';
-      }, 1500);
+      window._autosaveTimer = setTimeout(() => { if (indicator) indicator.style.opacity = '0.5'; }, 1500);
     }
-  } catch (e) {
-    // Silently fail if localStorage unavailable (private browsing, etc.)
-    console.warn('Could not save progress:', e);
-  }
+  } catch (e) { console.warn('Could not save progress:', e); }
 }
-
 function loadProgress() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return null;
-    return JSON.parse(raw);
-  } catch (e) {
-    return null;
-  }
+  try { const raw = localStorage.getItem(STORAGE_KEY); if (!raw) return null; return JSON.parse(raw); }
+  catch (e) { return null; }
 }
-
-function clearProgress() {
-  try {
-    localStorage.removeItem(STORAGE_KEY);
-  } catch (e) {}
-}
-
+function clearProgress() { try { localStorage.removeItem(STORAGE_KEY); } catch (e) {} }
 function resumeFromSaved(saved) {
   state.currentScreen = saved.currentScreen;
   state.currentQuestionIdx = saved.currentQuestionIdx;
@@ -965,7 +255,6 @@ function resumeFromSaved(saved) {
   document.documentElement.lang = state.lang;
   render();
 }
-
 function startFresh() {
   clearProgress();
   state.currentScreen = 'welcome';
@@ -973,11 +262,8 @@ function startFresh() {
   state.answers = {};
   render();
 }
-
 const SIZES = ['', 'size-125', 'size-150', 'size-175'];
-const SIZE_LABELS = ['A+', 'A+', 'A+', 'A+'];
 
-// ========== TRANSLATIONS ==========
 const T = {
   es: {
     welcome_title: "Bienvenido/a",
@@ -986,28 +272,17 @@ const T = {
     welcome_intro_h: "Antes de su consulta",
     welcome_intro_p: "Le pedimos que conteste algunas preguntas sobre su visión, su estilo de vida, y lo que espera de su próximo paso. Sus respuestas ayudarán a nuestro personal clínico a prepararse para conversar con usted con tiempo y atención.",
     welcome_features_h: "Sobre este cuestionario",
-    welcome_features: [
-      "Toma entre 8 y 12 minutos",
-      "Puede pausar y continuar después",
-      "Sus respuestas son confidenciales",
-      "No reemplaza su evaluación clínica — la complementa"
-    ],
-    btn_start: "Comenzar",
-    btn_next: "Siguiente",
-    btn_back: "Atrás",
-    btn_submit: "Confirmar y generar perfil",
-    btn_review: "Revisar respuestas",
-    btn_finish: "Generar mi perfil",
-    progress_q: "Pregunta",
-    progress_of: "de",
+    welcome_features: ["Toma entre 8 y 12 minutos","Puede pausar y continuar después","Sus respuestas son confidenciales","No reemplaza su evaluación clínica — la complementa"],
+    btn_start: "Comenzar", btn_next: "Siguiente", btn_back: "Atrás",
+    btn_submit: "Confirmar y generar perfil", btn_review: "Revisar respuestas", btn_finish: "Generar mi perfil",
+    progress_q: "Pregunta", progress_of: "de",
     halfway: "Va por la mitad. Le quedan unos 4-5 minutos.",
     near_done: "Casi terminamos. Solo quedan unas pocas preguntas.",
     confirm_title: "Sus respuestas",
     confirm_intro: "Por favor revise lo que respondió antes de generar su perfil. Si quiere cambiar algo, puede regresar a esa pregunta.",
     output_title: "Gracias por compartir esto con nosotros",
     output_intro: "En su consulta, conversaremos sobre las opciones que mejor encajan con lo que usted compartió.",
-    output_summary_h: "Lo que nos compartió",
-    output_next_h: "Próximo paso",
+    output_summary_h: "Lo que nos compartió", output_next_h: "Próximo paso",
     output_next_p: "Su clínico revisará sus respuestas antes de la consulta. En la cita, le orientará sobre cuál podría ser la mejor opción para su caso específico, basándose en lo que usted compartió y en los exámenes clínicos que se le harán.",
     output_clinical_h: "Vista del equipo clínico",
     output_clinical_p: "(Esta sección normalmente solo la ve el equipo clínico — la mostramos aquí para fines de demostración)",
@@ -1020,28 +295,17 @@ const T = {
     welcome_intro_h: "Before your visit",
     welcome_intro_p: "We'd like you to answer some questions about your vision, your lifestyle, and what you're hoping for from your next step. Your answers will help our clinical staff prepare to talk with you with time and attention.",
     welcome_features_h: "About this questionnaire",
-    welcome_features: [
-      "Takes 8 to 12 minutes",
-      "You can pause and continue later",
-      "Your answers are confidential",
-      "Does not replace your clinical evaluation — it complements it"
-    ],
-    btn_start: "Start",
-    btn_next: "Next",
-    btn_back: "Back",
-    btn_submit: "Confirm and generate profile",
-    btn_review: "Review answers",
-    btn_finish: "Generate my profile",
-    progress_q: "Question",
-    progress_of: "of",
+    welcome_features: ["Takes 8 to 12 minutes","You can pause and continue later","Your answers are confidential","Does not replace your clinical evaluation — it complements it"],
+    btn_start: "Start", btn_next: "Next", btn_back: "Back",
+    btn_submit: "Confirm and generate profile", btn_review: "Review answers", btn_finish: "Generate my profile",
+    progress_q: "Question", progress_of: "of",
     halfway: "You're halfway. About 4-5 minutes left.",
     near_done: "Almost done. Just a few questions left.",
     confirm_title: "Your answers",
     confirm_intro: "Please review what you answered before generating your profile. You can go back to any question if you want to change something.",
     output_title: "Thank you for sharing this with us",
     output_intro: "At your visit, we'll talk about the options that best match what you shared.",
-    output_summary_h: "What you shared",
-    output_next_h: "Next step",
+    output_summary_h: "What you shared", output_next_h: "Next step",
     output_next_p: "Your clinician will review your answers before the visit. At the appointment, they'll guide you on what might be the best option for your specific case, based on what you shared and the clinical exams.",
     output_clinical_h: "Clinical team view",
     output_clinical_p: "(This section is normally only seen by the clinical team — shown here for demonstration purposes)",
@@ -1049,14 +313,47 @@ const T = {
   }
 };
 
-// ========== QUESTIONS ==========
-// Each question: { id, section, type, q (es/en), options (es/en), helper?, infoBlock?, condition?, dynamicOptions?, allowSkip? }
+// SVG inline halo demo (reemplaza base64 JPEG — más nítido, accesible, ~5KB → ~700 bytes)
+const HALO_DEMO_SVG = `
+<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Comparación visual: glare, halo y starburst">
+  <defs>
+    <radialGradient id="halo-grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="1"/>
+      <stop offset="20%" stop-color="#fff" stop-opacity="0.4"/>
+      <stop offset="60%" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur-glare"><feGaussianBlur stdDeviation="6"/></filter>
+  </defs>
+  <text x="100" y="30" text-anchor="middle" fill="#cbd5e0" font-size="14" font-family="system-ui">Glare</text>
+  <text x="300" y="30" text-anchor="middle" fill="#fff" font-size="14" font-weight="700" font-family="system-ui">Halo</text>
+  <text x="500" y="30" text-anchor="middle" fill="#cbd5e0" font-size="14" font-family="system-ui">Starburst</text>
+  <g transform="translate(100,110)">
+    <circle r="35" fill="#fff" filter="url(#blur-glare)" opacity="0.6"/>
+    <circle r="6" fill="#fff"/>
+  </g>
+  <g transform="translate(300,110)">
+    <circle r="6" fill="#fff"/>
+    <circle r="22" fill="none" stroke="#fff" stroke-width="1.5" opacity="0.7"/>
+    <circle r="34" fill="none" stroke="#fff" stroke-width="1" opacity="0.45"/>
+    <circle r="46" fill="none" stroke="#fff" stroke-width="0.7" opacity="0.25"/>
+  </g>
+  <g transform="translate(500,110)" stroke="#fff" stroke-width="1.5" opacity="0.85">
+    <circle r="6" fill="#fff" stroke="none"/>
+    <line x1="0" y1="-40" x2="0" y2="40"/>
+    <line x1="-40" y1="0" x2="40" y2="0"/>
+    <line x1="-28" y1="-28" x2="28" y2="28"/>
+    <line x1="-28" y1="28" x2="28" y2="-28"/>
+    <line x1="-15" y1="-37" x2="15" y2="37" stroke-width="1" opacity="0.6"/>
+    <line x1="15" y1="-37" x2="-15" y2="37" stroke-width="1" opacity="0.6"/>
+  </g>
+  <text x="100" y="180" text-anchor="middle" fill="#9ca3af" font-size="11" font-style="italic" font-family="system-ui">Resplandor difuso</text>
+  <text x="300" y="180" text-anchor="middle" fill="#9ca3af" font-size="11" font-style="italic" font-family="system-ui">Anillos concéntricos</text>
+  <text x="500" y="180" text-anchor="middle" fill="#9ca3af" font-size="11" font-style="italic" font-family="system-ui">Rayos puntiagudos</text>
+</svg>`;
+
 const QUESTIONS = [
-  // ===== SECTION 1: FILTRO INICIAL =====
   {
-    id: 'q1_age',
-    section: 's1',
-    type: 'single',
+    id: 'q1_age', section: 's1', type: 'single',
     q: { es: '¿Qué edad tiene?', en: 'What is your age?' },
     options: {
       es: ['Menor de 40 años', 'Entre 40 y 49 años', 'Entre 50 y 59 años', 'Entre 60 y 69 años', '70 años o más'],
@@ -1064,597 +361,225 @@ const QUESTIONS = [
     }
   },
   {
-    id: 'q2_reason',
-    section: 's1',
-    type: 'single',
+    id: 'q2_reason', section: 's1', type: 'single',
     q: { es: '¿Cuál es la razón principal por la que visita iOPR hoy?', en: 'What is the main reason for your visit to iOPR today?' },
     options: {
-      es: [
-        'Me diagnosticaron cataratas y necesito cirugía',
-        'Quiero dejar de usar espejuelos o lentes de contacto',
-        'Tengo dificultad para ver de cerca (lectura, celular) y quiero conocer mis opciones',
-        'Veo borroso o distorsionado y quiero saber qué opciones tengo',
-        'Considero cirugía por razones de seguridad, profesionales o deportivas — no necesariamente porque me molesten los espejuelos',
-        'Estoy explorando — no estoy seguro/a si necesito un procedimiento',
-        'Consulta de seguimiento o evaluación general'
-      ],
-      en: [
-        'I was diagnosed with cataracts and need surgery',
-        'I want to stop wearing glasses or contact lenses',
-        'I have trouble seeing up close (reading, phone) and want to know my options',
-        'I see blurry or distorted and want to know what options I have',
-        'I am considering surgery for safety, professional, or sports reasons — not necessarily because glasses bother me',
-        'I am exploring — I am not sure if I need a procedure',
-        'Follow-up or general evaluation'
-      ]
+      es: ['Me diagnosticaron cataratas y necesito cirugía','Quiero dejar de usar espejuelos o lentes de contacto','Tengo dificultad para ver de cerca (lectura, celular) y quiero conocer mis opciones','Veo borroso o distorsionado y quiero saber qué opciones tengo','Considero cirugía por razones de seguridad, profesionales o deportivas — no necesariamente porque me molesten los espejuelos','Estoy explorando — no estoy seguro/a si necesito un procedimiento','Consulta de seguimiento o evaluación general'],
+      en: ['I was diagnosed with cataracts and need surgery','I want to stop wearing glasses or contact lenses','I have trouble seeing up close (reading, phone) and want to know my options','I see blurry or distorted and want to know what options I have','I am considering surgery for safety, professional, or sports reasons — not necessarily because glasses bother me','I am exploring — I am not sure if I need a procedure','Follow-up or general evaluation']
     }
   },
   {
-    id: 'q3_correction',
-    section: 's1',
-    type: 'single',
+    id: 'q3_correction', section: 's1', type: 'single',
     q: { es: '¿Qué tipo de corrección visual usa actualmente?', en: 'What type of vision correction do you currently use?' },
     options: {
-      es: [
-        'No uso ninguna corrección actualmente',
-        'Espejuelos solo para leer',
-        'Espejuelos solo para distancia (manejar, ver lejos)',
-        'Espejuelos para todo — los uso constantemente desde hace años',
-        'Uso dos pares de espejuelos separados (uno para leer, otro para distancia)',
-        'Espejuelos progresivos o bifocales',
-        'Lentes de contacto',
-        'Tuve cirugía refractiva (LASIK, PRK, RK, Kamra, ICL) en el pasado'
-      ],
-      en: [
-        'I do not use any correction currently',
-        'Reading glasses only',
-        'Distance glasses only (driving, far vision)',
-        'Glasses for everything — I have used them constantly for years',
-        'I use two separate pairs of glasses (one for reading, one for distance)',
-        'Progressive or bifocal glasses',
-        'Contact lenses',
-        'I had refractive surgery (LASIK, PRK, RK, Kamra, ICL) in the past'
-      ]
+      es: ['No uso ninguna corrección actualmente','Espejuelos solo para leer','Espejuelos solo para distancia (manejar, ver lejos)','Espejuelos para todo — los uso constantemente desde hace años','Uso dos pares de espejuelos separados (uno para leer, otro para distancia)','Espejuelos progresivos o bifocales','Lentes de contacto','Tuve cirugía refractiva (LASIK, PRK, RK, Kamra, ICL) en el pasado'],
+      en: ['I do not use any correction currently','Reading glasses only','Distance glasses only (driving, far vision)','Glasses for everything — I have used them constantly for years','I use two separate pairs of glasses (one for reading, one for distance)','Progressive or bifocal glasses','Contact lenses','I had refractive surgery (LASIK, PRK, RK, Kamra, ICL) in the past']
     }
   },
   {
-    id: 'q3_1_magnitude',
-    section: 's1',
-    type: 'multi',
+    id: 'q3_1_magnitude', section: 's1', type: 'multi',
     q: { es: '¿Cuál describe mejor su receta o necesidad de corrección?', en: 'Which best describes your prescription or correction need?' },
     helper: { es: 'Puede marcar más de una opción si aplican varias. Si no está seguro/a, marque "Prefiero que el clínico me oriente".', en: 'You can mark more than one if several apply. If you are not sure, mark "I prefer the clinician to guide me".' },
     options: {
-      es: [
-        'Veo bien de cerca pero borroso de lejos (miopía leve)',
-        'Necesito corrección la mayoría del tiempo para ver de lejos (miopía moderada o alta)',
-        'Necesito espejuelos para leer y a veces de lejos (hipermetropía)',
-        'Veo borroso o distorsionado en cerca y lejos (astigmatismo)',
-        'Mi visión de lejos es buena, solo necesito ayuda para leer (presbicia)',
-        'Prefiero que el clínico me oriente sobre esto'
-      ],
-      en: [
-        'I see well up close but blurry far away (mild myopia)',
-        'I need correction most of the time to see far (moderate or high myopia)',
-        'I need glasses to read and sometimes far away (hyperopia)',
-        'I see blurry or distorted near and far (astigmatism)',
-        'My distance vision is good, I just need help reading (presbyopia)',
-        'I prefer the clinician to guide me on this'
-      ]
+      es: ['Veo bien de cerca pero borroso de lejos (miopía leve)','Necesito corrección la mayoría del tiempo para ver de lejos (miopía moderada o alta)','Necesito espejuelos para leer y a veces de lejos (hipermetropía)','Veo borroso o distorsionado en cerca y lejos (astigmatismo)','Mi visión de lejos es buena, solo necesito ayuda para leer (presbicia)','Prefiero que el clínico me oriente sobre esto'],
+      en: ['I see well up close but blurry far away (mild myopia)','I need correction most of the time to see far (moderate or high myopia)','I need glasses to read and sometimes far away (hyperopia)','I see blurry or distorted near and far (astigmatism)','My distance vision is good, I just need help reading (presbyopia)','I prefer the clinician to guide me on this']
     },
-    condition: (a) => a.q3_correction !== 0 // Skip if "no correction"
+    condition: (a) => a.q3_correction !== 0
   },
   {
-    id: 'q3_2_floaters',
-    section: 's1',
-    type: 'single',
+    id: 'q3_2_floaters', section: 's1', type: 'single',
     q: { es: '¿Ha notado nuevos flotadores (manchas, hilos, telarañas que se mueven en su visión) en los últimos 6 meses?', en: 'Have you noticed new floaters (spots, threads, cobwebs moving in your vision) in the last 6 months?' },
     helper: { es: 'Esto es importante para evaluar su salud retiniana.', en: 'This is important to evaluate your retinal health.' },
     options: {
-      es: [
-        'No, no he notado flotadores nuevos',
-        'Sí, ocasionalmente he visto algunos flotadores nuevos',
-        'Sí, frecuentemente — me molestan',
-        'Sí, junto con destellos de luz o "cortinas" en mi visión',
-        'No estoy seguro/a'
-      ],
-      en: [
-        'No, I have not noticed new floaters',
-        'Yes, occasionally I have seen some new floaters',
-        'Yes, frequently — they bother me',
-        'Yes, along with flashes of light or "curtains" in my vision',
-        'I am not sure'
-      ]
+      es: ['No, no he notado flotadores nuevos','Sí, ocasionalmente he visto algunos flotadores nuevos','Sí, frecuentemente — me molestan','Sí, junto con destellos de luz o "cortinas" en mi visión','No estoy seguro/a'],
+      en: ['No, I have not noticed new floaters','Yes, occasionally I have seen some new floaters','Yes, frequently — they bother me','Yes, along with flashes of light or "curtains" in my vision','I am not sure']
     },
-    // Urgent flag: option 3 (flashes/curtains) suggests possible retinal detachment
     urgentOption: 3,
     urgentMessage: {
       es: '⚠ Importante: Los destellos de luz o "cortinas" en su visión pueden indicar una condición de la retina que requiere atención prioritaria. Por favor avise a la coordinadora al llegar a su cita, o llame a (787) 769-2477 si los síntomas son recientes o están empeorando.',
       en: '⚠ Important: Flashes of light or "curtains" in your vision can indicate a retinal condition that requires priority attention. Please notify the coordinator upon arrival, or call (787) 769-2477 if symptoms are recent or worsening.'
     },
-    // Show for any myope (PVD risk extends beyond age 50, especially in moderate/high myopes)
     condition: (a) => Array.isArray(a.q3_1_magnitude) && a.q3_1_magnitude.includes(1)
   },
   {
-    id: 'q3_3_contacts_occasional',
-    section: 's1',
-    type: 'single',
+    id: 'q3_3_contacts_occasional', section: 's1', type: 'single',
     q: { es: '¿Usa también lentes de contacto en algunas ocasiones (deportes, eventos sociales, viajes)?', en: 'Do you also use contact lenses on some occasions (sports, social events, travel)?' },
     helper: { es: 'Esta información ayuda al clínico a entender mejor su patrón de uso visual.', en: 'This helps your clinician better understand your visual use pattern.' },
     options: {
-      es: [
-        'No, solo uso espejuelos',
-        'Sí, ocasionalmente — algunas veces al mes',
-        'Sí, regularmente — varias veces a la semana',
-        'Sí, frecuentemente — la mayoría de los días alterno entre espejuelos y contactos',
-        'Probé los lentes de contacto pero no los toleré'
-      ],
-      en: [
-        'No, I only use glasses',
-        'Yes, occasionally — a few times a month',
-        'Yes, regularly — several times a week',
-        'Yes, frequently — most days I alternate between glasses and contacts',
-        'I tried contact lenses but did not tolerate them'
-      ]
+      es: ['No, solo uso espejuelos','Sí, ocasionalmente — algunas veces al mes','Sí, regularmente — varias veces a la semana','Sí, frecuentemente — la mayoría de los días alterno entre espejuelos y contactos','Probé los lentes de contacto pero no los toleré'],
+      en: ['No, I only use glasses','Yes, occasionally — a few times a month','Yes, regularly — several times a week','Yes, frequently — most days I alternate between glasses and contacts','I tried contact lenses but did not tolerate them']
     },
-    // Show only if the patient uses glasses of any kind (Q3 indices 1-5)
     condition: (a) => a.q3_correction >= 1 && a.q3_correction <= 5
   },
-
-  // ===== SECTION 2: VIDA VISUAL =====
   {
-    id: 'q4_activities',
-    section: 's2',
-    type: 'multi',
+    id: 'q4_activities', section: 's2', type: 'multi',
     q: { es: '¿Cuáles de estas actividades son importantes en su día a día?', en: 'Which of these activities are important in your day to day life?' },
     helper: { es: 'Puede marcar todas las que apliquen.', en: 'You can mark all that apply.' },
     options: {
-      es: [
-        'Conducir (de día y de noche)',
-        'Lectura prolongada (libros, documentos, periódico)',
-        'Trabajo con pantallas (computadora, celular, tablet)',
-        'Ver televisión o películas',
-        'Deportes y actividad física (tenis, golf, ciclismo, gym, caminatas)',
-        'Trabajos manuales detallados (cocinar, artesanía, costura, jardinería)',
-        'Vida social y eventos en grupo',
-        'Todas las anteriores son importantes para mí'
-      ],
-      en: [
-        'Driving (day and night)',
-        'Prolonged reading (books, documents, newspaper)',
-        'Screen work (computer, phone, tablet)',
-        'Watching TV or movies',
-        'Sports and physical activity (tennis, golf, cycling, gym, walks)',
-        'Detailed handwork (cooking, crafts, sewing, gardening)',
-        'Social life and group events',
-        'All of the above are important to me'
-      ]
+      es: ['Conducir (de día y de noche)','Lectura prolongada (libros, documentos, periódico)','Trabajo con pantallas (computadora, celular, tablet)','Ver televisión o películas','Deportes y actividad física (tenis, golf, ciclismo, gym, caminatas)','Trabajos manuales detallados (cocinar, artesanía, costura, jardinería)','Vida social y eventos en grupo','Todas las anteriores son importantes para mí'],
+      en: ['Driving (day and night)','Prolonged reading (books, documents, newspaper)','Screen work (computer, phone, tablet)','Watching TV or movies','Sports and physical activity (tennis, golf, cycling, gym, walks)','Detailed handwork (cooking, crafts, sewing, gardening)','Social life and group events','All of the above are important to me']
     }
   },
   {
-    id: 'q5_priority',
-    section: 's2',
-    type: 'single_dynamic',
+    id: 'q5_priority', section: 's2', type: 'single_dynamic',
     q: { es: 'De las actividades que marcó, ¿cuál es la MÁS importante? (la que más extrañaría)', en: 'Of the activities you marked, which is the MOST important? (the one you would miss the most)' },
     dynamicOptions: (a) => {
       const idx = a.q4_activities;
       if (!Array.isArray(idx) || idx.length < 3) return null;
-      // Skip Q5 if patient selected only "All of the above" — no specific priority to ask
       if (idx.length === 1 && idx[0] === 7) return null;
       return idx.filter(i => i !== 7).map(i => QUESTIONS.find(q => q.id === 'q4_activities').options[state.lang][i]);
     },
     condition: (a) => {
       if (!Array.isArray(a.q4_activities) || a.q4_activities.length < 3) return false;
-      // Skip if only "All of the above" was selected
       if (a.q4_activities.length === 1 && a.q4_activities[0] === 7) return false;
       return true;
     }
   },
   {
-    id: 'q6_night_driving',
-    section: 's2',
-    type: 'single',
+    id: 'q6_night_driving', section: 's2', type: 'single',
     q: { es: '¿Qué tan frecuentemente conduce de noche?', en: 'How often do you drive at night?' },
     options: {
-      es: [
-        'Casi nunca — evito conducir de noche',
-        'Ocasionalmente — solo si es necesario',
-        'Regularmente — varias veces por semana',
-        'Frecuentemente — diariamente o casi diariamente',
-        'Profesionalmente — conduzco de noche por mi trabajo'
-      ],
-      en: [
-        'Almost never — I avoid driving at night',
-        'Occasionally — only if necessary',
-        'Regularly — several times a week',
-        'Frequently — daily or almost daily',
-        'Professionally — I drive at night for work'
-      ]
+      es: ['Casi nunca — evito conducir de noche','Ocasionalmente — solo si es necesario','Regularmente — varias veces por semana','Frecuentemente — diariamente o casi diariamente','Profesionalmente — conduzco de noche por mi trabajo'],
+      en: ['Almost never — I avoid driving at night','Occasionally — only if necessary','Regularly — several times a week','Frequently — daily or almost daily','Professionally — I drive at night for work']
     }
   },
   {
-    id: 'q7_glasses_reading',
-    section: 's2',
-    type: 'likert',
+    id: 'q7_glasses_reading', section: 's2', type: 'likert',
     q: { es: 'Si después de su procedimiento quedara necesitando espejuelos para algunas tareas específicas (como leer letra muy pequeña), ¿cómo se sentiría?', en: 'If after your procedure you still needed glasses for some specific tasks (like reading very small print), how would you feel?' },
     options: {
-      es: [
-        'No me molestaría — los uso sin problema',
-        'Aceptable — no es lo ideal pero está bien',
-        'Indiferente',
-        'Me molestaría — preferiría no necesitarlos',
-        'Me molestaría mucho — quiero independencia total'
-      ],
-      en: [
-        'It would not bother me — I use them without problem',
-        'Acceptable — not ideal but okay',
-        'Indifferent',
-        'It would bother me — I would prefer not to need them',
-        'It would bother me a lot — I want total independence'
-      ]
+      es: ['No me molestaría — los uso sin problema','Aceptable — no es lo ideal pero está bien','Indiferente','Me molestaría — preferiría no necesitarlos','Me molestaría mucho — quiero independencia total'],
+      en: ['It would not bother me — I use them without problem','Acceptable — not ideal but okay','Indifferent','It would bother me — I would prefer not to need them','It would bother me a lot — I want total independence']
     }
   },
   {
-    id: 'q7_5_motivation',
-    section: 's2',
-    type: 'single',
+    id: 'q7_5_motivation', section: 's2', type: 'single',
     q: { es: '¿Cuál describe mejor su motivación principal para considerar un procedimiento refractivo?', en: 'Which best describes your main motivation for considering a refractive procedure?' },
     helper: { es: 'Esta información ayuda al clínico a calibrar la conversación con usted.', en: 'This information helps your clinician tailor the conversation with you.' },
     options: {
-      es: [
-        'Quiero dejar de depender de espejuelos completamente — es importante para mí',
-        'Razones de seguridad — no quiero depender de espejuelos en emergencias',
-        'Razones profesionales o laborales específicas',
-        'Razones deportivas — los espejuelos son obstáculo en mi actividad física',
-        'Razones estéticas — me sentiría mejor sin espejuelos visibles',
-        'Solo busco mayor comodidad ocasional — no me molestan demasiado actualmente',
-        'Llevo años con espejuelos y siento curiosidad por las alternativas modernas',
-        'Otra razón'
-      ],
-      en: [
-        'I want to completely stop depending on glasses — it is important to me',
-        'Safety reasons — I do not want to depend on glasses in emergencies',
-        'Specific professional or work reasons',
-        'Sports reasons — glasses are an obstacle in my physical activity',
-        'Aesthetic reasons — I would feel better without visible glasses',
-        'I just want occasional comfort — they do not bother me too much now',
-        'I have worn glasses for years and am curious about modern alternatives',
-        'Other reason'
-      ]
+      es: ['Quiero dejar de depender de espejuelos completamente — es importante para mí','Razones de seguridad — no quiero depender de espejuelos en emergencias','Razones profesionales o laborales específicas','Razones deportivas — los espejuelos son obstáculo en mi actividad física','Razones estéticas — me sentiría mejor sin espejuelos visibles','Solo busco mayor comodidad ocasional — no me molestan demasiado actualmente','Llevo años con espejuelos y siento curiosidad por las alternativas modernas','Otra razón'],
+      en: ['I want to completely stop depending on glasses — it is important to me','Safety reasons — I do not want to depend on glasses in emergencies','Specific professional or work reasons','Sports reasons — glasses are an obstacle in my physical activity','Aesthetic reasons — I would feel better without visible glasses','I just want occasional comfort — they do not bother me too much now','I have worn glasses for years and am curious about modern alternatives','Other reason']
     },
-    // Show for refractive-seeking patients: option 1 (stop glasses), 2 (near difficulty), or 4 (safety/professional/sports)
     condition: (a) => a.q2_reason === 1 || a.q2_reason === 2 || a.q2_reason === 4
   },
   {
-    id: 'q7_6_glasses_relationship',
-    section: 's2',
-    type: 'single',
+    id: 'q7_6_glasses_relationship', section: 's2', type: 'single',
     q: { es: '¿Cómo describiría su relación actual con los espejuelos o lentes de contacto?', en: 'How would you describe your current relationship with glasses or contact lenses?' },
     options: {
-      es: [
-        'Los uso pero los considero un fastidio que quiero eliminar',
-        'Los uso sin problema, pero si pudiera evitarlos, lo haría',
-        'Los uso y son parte de mi rutina — neutral',
-        'Los considero parte de mi identidad o estilo — no me molestan',
-        'Los uso porque debo, pero me gustaría depender menos de ellos',
-        'Solo uso lentes de contacto y los tolero bien',
-        'Solo uso lentes de contacto pero ya no los tolero como antes',
-        'No uso espejuelos ni lentes de contacto',
-        'No uso espejuelos ni lentes de contacto porque tuve cirugía refractiva previa (LASIK, PRK, RK, Kamra, ICL)'
-      ],
-      en: [
-        'I use them but I consider them a nuisance I want to eliminate',
-        'I use them without problem, but if I could avoid them I would',
-        'I use them and they are part of my routine — neutral',
-        'I consider them part of my identity or style — they do not bother me',
-        'I use them because I have to, but I would like to depend less on them',
-        'I only use contact lenses and tolerate them well',
-        'I only use contact lenses but no longer tolerate them as before',
-        'I do not use glasses or contact lenses',
-        'I do not use glasses or contact lenses because I had previous refractive surgery (LASIK, PRK, RK, Kamra, ICL)'
-      ]
+      es: ['Los uso pero los considero un fastidio que quiero eliminar','Los uso sin problema, pero si pudiera evitarlos, lo haría','Los uso y son parte de mi rutina — neutral','Los considero parte de mi identidad o estilo — no me molestan','Los uso porque debo, pero me gustaría depender menos de ellos','Solo uso lentes de contacto y los tolero bien','Solo uso lentes de contacto pero ya no los tolero como antes','No uso espejuelos ni lentes de contacto','No uso espejuelos ni lentes de contacto porque tuve cirugía refractiva previa (LASIK, PRK, RK, Kamra, ICL)'],
+      en: ['I use them but I consider them a nuisance I want to eliminate','I use them without problem, but if I could avoid them I would','I use them and they are part of my routine — neutral','I consider them part of my identity or style — they do not bother me','I use them because I have to, but I would like to depend less on them','I only use contact lenses and tolerate them well','I only use contact lenses but no longer tolerate them as before','I do not use glasses or contact lenses','I do not use glasses or contact lenses because I had previous refractive surgery (LASIK, PRK, RK, Kamra, ICL)']
     },
-    // Skip if patient already indicated no correction in q3_correction.
-    // The "No uso espejuelos ni lentes de contacto" option captures edge cases
-    // where a patient marked a correction but does not actually use it consistently.
     condition: (a) => a.q3_correction !== 0
   },
   {
-    id: 'q8_multifocal_interest',
-    section: 's2',
-    type: 'single',
+    id: 'q8_multifocal_interest', section: 's2', type: 'single',
     q: { es: 'Si pudiera resolver tanto su visión de lejos como la de cerca con un solo procedimiento, en lugar de seguir necesitando espejuelos para leer, ¿le interesaría?', en: 'If you could solve both your distance and near vision with a single procedure, instead of continuing to need reading glasses, would you be interested?' },
     options: {
-      es: [
-        'Sí, definitivamente — eso es exactamente lo que busco',
-        'Probablemente sí, pero quiero conocer todas las opciones primero',
-        'No estoy seguro/a — necesito más información',
-        'No me interesa — prefiero soluciones más conservadoras',
-        'Prefiero que el clínico me oriente sobre esto'
-      ],
-      en: [
-        'Yes, definitely — that is exactly what I am looking for',
-        'Probably yes, but I want to know all the options first',
-        'I am not sure — I need more information',
-        'Not interested — I prefer more conservative solutions',
-        'I prefer the clinician to guide me on this'
-      ]
+      es: ['Sí, definitivamente — eso es exactamente lo que busco','Probablemente sí, pero quiero conocer todas las opciones primero','No estoy seguro/a — necesito más información','No me interesa — prefiero soluciones más conservadoras','Prefiero que el clínico me oriente sobre esto'],
+      en: ['Yes, definitely — that is exactly what I am looking for','Probably yes, but I want to know all the options first','I am not sure — I need more information','Not interested — I prefer more conservative solutions','I prefer the clinician to guide me on this']
     },
-    condition: (a) => a.q1_age >= 1 // Only 40+
+    condition: (a) => a.q1_age >= 1
   },
-
-  // ===== SECTION 3: TOLERANCIA Y EXPECTATIVAS =====
   {
-    id: 'q9_halos',
-    section: 's3',
-    type: 'single',
+    id: 'q9_halos', section: 's3', type: 'single',
     q: { es: 'Si su mejor opción quirúrgica le permitiera ver bien de lejos y de cerca sin espejuelos, pero le produjera halos suaves alrededor de las luces al conducir de noche, ¿qué preferiría?', en: 'If your best surgical option let you see well far and near without glasses, but produced soft halos around lights when driving at night, what would you prefer?' },
     infoBlock: {
-      es: 'Los halos son círculos de luz suave que se ven alrededor de luces brillantes (como faros de carros) en la oscuridad. La mayoría de pacientes se acostumbran con el tiempo.',
-      en: 'Halos are soft circles of light seen around bright lights (like car headlights) in the dark. Most patients get used to them over time.'
+      es: 'La imagen muestra los tres fenómenos visuales nocturnos que pueden ocurrir después de cirugía. <strong>El fenómeno asociado con las opciones que ofrecen mayor independencia de espejuelos es el del centro: el halo</strong> — círculos concéntricos suaves alrededor de luces brillantes (como faros de carros). El glare y el starburst se muestran como referencia educativa, pero no son los fenómenos típicos de las decisiones de tier que conversaremos en su consulta. La mayoría de pacientes se acostumbra a los halos suaves con el tiempo.',
+      en: 'The image shows the three nighttime visual phenomena that can occur after surgery. <strong>The phenomenon associated with options offering greater glasses independence is the one in the middle: the halo</strong> — soft concentric circles around bright lights (like car headlights). Glare and starburst are shown as educational reference, but they are not the typical phenomena involved in the tier decisions we will discuss at your consultation. Most patients get used to soft halos over time.'
     },
     showHaloDemo: true,
     options: {
-      es: [
-        'Aceptaría los halos suaves a cambio de no depender de espejuelos',
-        'No estoy seguro/a — quisiera entender mejor cómo se ven antes de decidir',
-        'Preferiría no tener halos, aunque eso signifique seguir necesitando espejuelos para leer',
-        'Prefiero que el clínico me oriente sobre esto'
-      ],
-      en: [
-        'I would accept soft halos in exchange for not depending on glasses',
-        'I am not sure — I would like to understand better how they look before deciding',
-        'I would prefer not to have halos, even if that means still needing reading glasses',
-        'I prefer the clinician to guide me on this'
-      ]
+      es: ['Aceptaría los halos suaves a cambio de no depender de espejuelos','No estoy seguro/a — quisiera entender mejor cómo se ven antes de decidir','Preferiría no tener halos, aunque eso signifique seguir necesitando espejuelos para leer','Prefiero que el clínico me oriente sobre esto'],
+      en: ['I would accept soft halos in exchange for not depending on glasses','I am not sure — I would like to understand better how they look before deciding','I would prefer not to have halos, even if that means still needing reading glasses','I prefer the clinician to guide me on this']
     }
   },
   {
-    id: 'q10_expectations',
-    section: 's3',
-    type: 'single',
+    id: 'q10_expectations', section: 's3', type: 'single',
     q: { es: 'Cuando piensa en su procedimiento ideal, ¿cuál de estas situaciones describe mejor lo que espera?', en: 'When you think about your ideal procedure, which of these best describes what you expect?' },
     options: {
-      es: [
-        'Espero ver perfectamente nítido en todas las distancias, sin imperfecciones, sin halos, sin ningún compromiso',
-        'Espero la mejor visión posible para mi anatomía, entendiendo que toda solución tiene compromisos honestos',
-        'Espero resolver mi problema principal — los detalles los puedo conversar con el clínico',
-        'No tengo expectativas firmes — quiero que el clínico me oriente'
-      ],
-      en: [
-        'I expect to see perfectly sharp at all distances, without imperfections, halos, or any compromise',
-        'I expect the best possible vision for my anatomy, understanding all solutions have honest tradeoffs',
-        'I expect to solve my main problem — the details I can discuss with the clinician',
-        'I have no firm expectations — I want the clinician to guide me'
-      ]
+      es: ['Espero ver perfectamente nítido en todas las distancias, sin imperfecciones, sin halos, sin ningún compromiso','Espero la mejor visión posible para mi anatomía, entendiendo que toda solución tiene compromisos honestos','Espero resolver mi problema principal — los detalles los puedo conversar con el clínico','No tengo expectativas firmes — quiero que el clínico me oriente'],
+      en: ['I expect to see perfectly sharp at all distances, without imperfections, halos, or any compromise','I expect the best possible vision for my anatomy, understanding all solutions have honest tradeoffs','I expect to solve my main problem — the details I can discuss with the clinician','I have no firm expectations — I want the clinician to guide me']
     }
   },
   {
-    id: 'q11_family',
-    section: 's3',
-    type: 'single',
+    id: 'q11_family', section: 's3', type: 'single',
     q: { es: '¿Conoce a alguien cercano que se haya operado de la vista? Si es así, ¿cómo le fue?', en: 'Do you know someone close who has had eye surgery? If so, how did it go for them?' },
     options: {
-      es: [
-        'Sí, le fue muy bien — está muy contento/a',
-        'Sí, le fue bien con algunos ajustes en el camino',
-        'Sí, tuvo problemas o no quedó satisfecho/a',
-        'No conozco a nadie cercano que se haya operado'
-      ],
-      en: [
-        'Yes, they did very well — they are very happy',
-        'Yes, they did well with some adjustments along the way',
-        'Yes, they had problems or were not satisfied',
-        'I do not know anyone close who has had surgery'
-      ]
+      es: ['Sí, le fue muy bien — está muy contento/a','Sí, le fue bien con algunos ajustes en el camino','Sí, tuvo problemas o no quedó satisfecho/a','No conozco a nadie cercano que se haya operado'],
+      en: ['Yes, they did very well — they are very happy','Yes, they did well with some adjustments along the way','Yes, they had problems or were not satisfied','I do not know anyone close who has had surgery']
     }
   },
   {
-    id: 'q12_recommendation',
-    section: 's3',
-    type: 'single',
+    id: 'q12_recommendation', section: 's3', type: 'single',
     q: { es: 'En oftalmología, la mejor opción no siempre es la más avanzada — a veces una opción más sencilla encaja mejor con los ojos de cada persona. Si esto resulta ser su caso, ¿cómo se sentiría con una recomendación así?', en: 'In ophthalmology, the best option is not always the most advanced — sometimes a simpler option fits better with each person\'s eyes. If this turns out to be your case, how would you feel about such a recommendation?' },
     helper: { es: 'No hay respuesta correcta. Esto solo nos ayuda a entender cómo le gusta tomar decisiones.', en: 'There is no correct answer. This just helps us understand how you like to make decisions.' },
     options: {
-      es: [
-        'Me sentiría bien — confío en una recomendación pensada para mi caso',
-        'Me gustaría entender la razón clínica, pero acepto si tiene sentido',
-        'Preferiría explorar la opción más avanzada antes de decidir',
-        'Me gustaría considerar una segunda opinión',
-        'Prefiero que el clínico me oriente sobre esto'
-      ],
-      en: [
-        'I would feel good — I trust a recommendation designed for my case',
-        'I would like to understand the clinical reason, but I accept if it makes sense',
-        'I would prefer to explore the most advanced option before deciding',
-        'I would like to consider a second opinion',
-        'I prefer the clinician to guide me on this'
-      ]
+      es: ['Me sentiría bien — confío en una recomendación pensada para mi caso','Me gustaría entender la razón clínica, pero acepto si tiene sentido','Preferiría explorar la opción más avanzada antes de decidir','Me gustaría considerar una segunda opinión','Prefiero que el clínico me oriente sobre esto'],
+      en: ['I would feel good — I trust a recommendation designed for my case','I would like to understand the clinical reason, but I accept if it makes sense','I would prefer to explore the most advanced option before deciding','I would like to consider a second opinion','I prefer the clinician to guide me on this']
     }
   },
   {
-    id: 'q13_reversibility',
-    section: 's3',
-    type: 'single',
+    id: 'q13_reversibility', section: 's3', type: 'single',
     q: { es: '¿Qué tan importante es para usted que el procedimiento sea reversible o ajustable después?', en: 'How important is it to you that the procedure be reversible or adjustable afterwards?' },
     options: {
-      es: [
-        'Muy importante — quiero opción de cambiar de opinión o ajustar',
-        'Algo importante — me gustaría tener flexibilidad pero no es crítico',
-        'Indiferente — confío en que el procedimiento sea el correcto desde el inicio',
-        'Prefiero solución definitiva — la flexibilidad no me preocupa'
-      ],
-      en: [
-        'Very important — I want the option to change my mind or adjust',
-        'Somewhat important — I would like flexibility but it is not critical',
-        'Indifferent — I trust the procedure to be right from the start',
-        'I prefer a definitive solution — flexibility does not concern me'
-      ]
+      es: ['Muy importante — quiero opción de cambiar de opinión o ajustar','Algo importante — me gustaría tener flexibilidad pero no es crítico','Indiferente — confío en que el procedimiento sea el correcto desde el inicio','Prefiero solución definitiva — la flexibilidad no me preocupa'],
+      en: ['Very important — I want the option to change my mind or adjust','Somewhat important — I would like flexibility but it is not critical','Indifferent — I trust the procedure to be right from the start','I prefer a definitive solution — flexibility does not concern me']
     }
   },
   {
-    id: 'q13_5_investment',
-    section: 's3',
-    type: 'single',
+    id: 'q13_5_investment', section: 's3', type: 'single',
     q: { es: 'Algunas opciones avanzadas (lentes premium, tecnologías especiales) ofrecen mayor independencia visual y resultados más completos, pero requieren inversión adicional fuera de lo que cubre el plan médico. ¿Cómo se siente al respecto?', en: 'Some advanced options (premium lenses, special technologies) offer greater visual independence and more complete outcomes, but require additional investment beyond what the medical plan covers. How do you feel about this?' },
     helper: { es: 'No es un compromiso — solo nos ayuda a saber qué opciones explorar con usted en la consulta.', en: 'This is not a commitment — it just helps us know which options to explore with you during the consultation.' },
     options: {
-      es: [
-        'Estoy abierto/a a invertir si la opción ofrece beneficios claros para mi caso',
-        'Quiero conocer todas las opciones (cubiertas y premium) para decidir con información',
-        'Prefiero opciones cubiertas por mi plan, sin costos adicionales si es posible',
-        'No es algo que haya considerado — quiero orientación del clínico',
-        'Prefiero no responder esto ahora'
-      ],
-      en: [
-        'I am open to investing if the option offers clear benefits for my case',
-        'I want to know all options (covered and premium) to decide with information',
-        'I prefer options covered by my plan, without additional costs if possible',
-        'I have not considered this — I want clinician guidance',
-        'I prefer not to answer this now'
-      ]
+      es: ['Estoy abierto/a a invertir si la opción ofrece beneficios claros para mi caso','Quiero conocer todas las opciones (cubiertas y premium) para decidir con información','Prefiero opciones cubiertas por mi plan, sin costos adicionales si es posible','No es algo que haya considerado — quiero orientación del clínico','Prefiero no responder esto ahora'],
+      en: ['I am open to investing if the option offers clear benefits for my case','I want to know all options (covered and premium) to decide with information','I prefer options covered by my plan, without additional costs if possible','I have not considered this — I want clinician guidance','I prefer not to answer this now']
     }
   },
-
-  // ===== SECTION 4: BANDERAS CLÍNICAS =====
   {
-    id: 'q14_conditions',
-    section: 's4',
-    type: 'multi',
+    id: 'q14_conditions', section: 's4', type: 'multi',
     q: { es: '¿Tiene o ha tenido alguna de las siguientes condiciones? Marque todas las que apliquen.', en: 'Do you have or have you had any of the following conditions? Mark all that apply.' },
     options: {
-      es: [
-        'Diabetes con problemas en los ojos (diabetes con afectación ocular conocida)',
-        'Presión alta del ojo (glaucoma diagnosticado)',
-        'Pérdida de visión central asociada con la edad (degeneración macular asociada a la edad / DMAE)',
-        'Daño en la retina por diabetes (retinopatía diabética)',
-        'Otros problemas en la parte de atrás del ojo (otras condiciones de retina o mácula diagnosticadas)',
-        'Córnea con forma anormal o irregular (queratocono diagnosticado)',
-        'Ojo seco que requiere tratamiento regular (ojo seco crónico)',
-        'Cirugía previa en el ojo (cirugía ocular previa: cataratas, retina, glaucoma)',
-        'Inflamaciones repetidas en el ojo (uveítis, iritis)',
-        'Me dijeron antes que tengo la córnea delgada (córnea delgada diagnosticada)',
-        'Ninguna de las anteriores',
-        'No estoy seguro/a'
-      ],
-      en: [
-        'Diabetes with eye problems (diabetes with known eye involvement)',
-        'High eye pressure (diagnosed glaucoma)',
-        'Central vision loss associated with aging (age-related macular degeneration / AMD)',
-        'Eye damage from diabetes (diabetic retinopathy)',
-        'Other problems in the back of the eye (other diagnosed retinal or macular conditions)',
-        'Cornea with abnormal or irregular shape (diagnosed keratoconus)',
-        'Dry eye requiring regular treatment (chronic dry eye)',
-        'Previous eye surgery (previous ocular surgery: cataract, retina, glaucoma)',
-        'Recurrent eye inflammation (uveitis, iritis)',
-        'I was told before I have a thin cornea (diagnosed thin cornea)',
-        'None of the above',
-        'I am not sure'
-      ]
+      es: ['Diabetes con problemas en los ojos (diabetes con afectación ocular conocida)','Presión alta del ojo (glaucoma diagnosticado)','Pérdida de visión central asociada con la edad (degeneración macular asociada a la edad / DMAE)','Daño en la retina por diabetes (retinopatía diabética)','Otros problemas en la parte de atrás del ojo (otras condiciones de retina o mácula diagnosticadas)','Córnea con forma anormal o irregular (queratocono diagnosticado)','Ojo seco que requiere tratamiento regular (ojo seco crónico)','Cirugía previa en el ojo (cirugía ocular previa: cataratas, retina, glaucoma)','Inflamaciones repetidas en el ojo (uveítis, iritis)','Me dijeron antes que tengo la córnea delgada (córnea delgada diagnosticada)','Ninguna de las anteriores','No estoy seguro/a'],
+      en: ['Diabetes with eye problems (diabetes with known eye involvement)','High eye pressure (diagnosed glaucoma)','Central vision loss associated with aging (age-related macular degeneration / AMD)','Eye damage from diabetes (diabetic retinopathy)','Other problems in the back of the eye (other diagnosed retinal or macular conditions)','Cornea with abnormal or irregular shape (diagnosed keratoconus)','Dry eye requiring regular treatment (chronic dry eye)','Previous eye surgery (previous ocular surgery: cataract, retina, glaucoma)','Recurrent eye inflammation (uveitis, iritis)','I was told before I have a thin cornea (diagnosed thin cornea)','None of the above','I am not sure']
     }
   },
   {
-    id: 'q14_1_priorSurgery',
-    section: 's4',
-    type: 'single',
+    id: 'q14_1_priorSurgery', section: 's4', type: 'single',
     q: { es: 'Sobre la cirugía previa en el ojo: ¿en cuál ojo le operaron?', en: 'About the previous eye surgery: which eye was operated on?' },
     helper: { es: 'Saber esto ayuda al equipo clínico a planificar correctamente.', en: 'Knowing this helps the clinical team plan correctly.' },
     options: {
-      es: [
-        'Solo el ojo derecho',
-        'Solo el ojo izquierdo',
-        'Ambos ojos',
-        'No estoy seguro/a — traeré los récords a la cita'
-      ],
-      en: [
-        'Right eye only',
-        'Left eye only',
-        'Both eyes',
-        'I am not sure — I will bring the records to the appointment'
-      ]
+      es: ['Solo el ojo derecho','Solo el ojo izquierdo','Ambos ojos','No estoy seguro/a — traeré los récords a la cita'],
+      en: ['Right eye only','Left eye only','Both eyes','I am not sure — I will bring the records to the appointment']
     },
-    // Show only if q14_conditions includes index 7 (previous eye surgery)
     condition: (a) => Array.isArray(a.q14_conditions) && a.q14_conditions.includes(7)
   },
   {
-    id: 'q14_5_meds',
-    section: 's4',
-    type: 'multi',
+    id: 'q14_5_meds', section: 's4', type: 'multi',
     q: { es: '¿Toma actualmente alguno de estos medicamentos?', en: 'Are you currently taking any of these medications?' },
     helper: { es: 'Algunos medicamentos pueden afectar el procedimiento o el postoperatorio.', en: 'Some medications can affect the procedure or postoperative course.' },
     options: {
-      es: [
-        'Medicamento para la próstata (Flomax, Uroxatral, Rapaflo / tamsulosina)',
-        'Medicamento para diluir la sangre (warfarina, apixabán, rivaroxabán / anticoagulantes)',
-        'Medicamento para la diabetes (insulina, metformina, otros)',
-        'Esteroides por largo tiempo (cortisona oral o inyectada por meses)',
-        'Medicamento que baja las defensas (inmunosupresores)',
-        'Ninguno de estos',
-        'No estoy seguro/a — traeré mi lista a la cita'
-      ],
-      en: [
-        'Prostate medication (Flomax, Uroxatral, Rapaflo / tamsulosin)',
-        'Blood thinner medication (warfarin, apixaban, rivaroxaban / anticoagulants)',
-        'Diabetes medication (insulin, metformin, others)',
-        'Long-term steroids (oral or injected cortisone for months)',
-        'Medication that lowers immune defenses (immunosuppressants)',
-        'None of these',
-        'I am not sure — I will bring my list to the appointment'
-      ]
+      es: ['Medicamento para la próstata (Flomax, Uroxatral, Rapaflo / tamsulosina)','Medicamento para diluir la sangre (warfarina, apixabán, rivaroxabán / anticoagulantes)','Medicamento para la diabetes (insulina, metformina, otros)','Esteroides por largo tiempo (cortisona oral o inyectada por meses)','Medicamento que baja las defensas (inmunosupresores)','Ninguno de estos','No estoy seguro/a — traeré mi lista a la cita'],
+      en: ['Prostate medication (Flomax, Uroxatral, Rapaflo / tamsulosin)','Blood thinner medication (warfarin, apixaban, rivaroxaban / anticoagulants)','Diabetes medication (insulin, metformin, others)','Long-term steroids (oral or injected cortisone for months)','Medication that lowers immune defenses (immunosuppressants)','None of these','I am not sure — I will bring my list to the appointment']
     }
   },
   {
-    id: 'q15_profession',
-    section: 's4',
-    type: 'single',
+    id: 'q15_profession', section: 's4', type: 'single',
     q: { es: '¿Cuál describe mejor su profesión u ocupación principal?', en: 'Which best describes your main profession or occupation?' },
     options: {
-      es: [
-        'Trabajo de oficina / profesional / administrativo',
-        'Cuerpos de seguridad (policía, militar, bombero)',
-        'Trabajos manuales con riesgo de trauma facial (construcción, mecánica)',
-        'Conductor profesional (taxi, camión, ambulancia)',
-        'Atleta de contacto o deporte de alto impacto',
-        'Profesional de salud que opera con microscopio',
-        'Educador, artista, otro',
-        'Retirado/a o no aplica'
-      ],
-      en: [
-        'Office / professional / administrative work',
-        'Security forces (police, military, firefighter)',
-        'Manual work with facial trauma risk (construction, mechanical)',
-        'Professional driver (taxi, truck, ambulance)',
-        'Contact or high-impact athlete',
-        'Healthcare professional working with microscope',
-        'Educator, artist, other',
-        'Retired or not applicable'
-      ]
+      es: ['Trabajo de oficina / profesional / administrativo','Cuerpos de seguridad (policía, militar, bombero)','Trabajos manuales con riesgo de trauma facial (construcción, mecánica)','Conductor profesional (taxi, camión, ambulancia)','Atleta de contacto o deporte de alto impacto','Profesional de salud que opera con microscopio','Educador, artista, otro','Retirado/a o no aplica'],
+      en: ['Office / professional / administrative work','Security forces (police, military, firefighter)','Manual work with facial trauma risk (construction, mechanical)','Professional driver (taxi, truck, ambulance)','Contact or high-impact athlete','Healthcare professional working with microscope','Educator, artist, other','Retired or not applicable']
     }
   },
   {
-    id: 'q15_5_preformed',
-    section: 's4',
-    type: 'single',
+    id: 'q15_5_preformed', section: 's4', type: 'single',
     q: { es: 'Si ya investigó o conversó con alguien sobre opciones de cirugía, ¿hay alguna en particular que le interese?', en: 'If you have already researched or talked with someone about surgery options, is there any in particular that interests you?' },
     helper: { es: 'Saber esto ayuda al clínico a conversar con usted desde donde ya está.', en: 'Knowing this helps your clinician have a conversation that meets you where you are.' },
     options: {
-      es: [
-        'No, vengo sin preferencia previa — quiero que me orienten',
-        'He oído de algunas opciones pero quiero que el clínico me oriente',
-        'Tengo interés específico en alguna opción',
-        'No estoy considerando cirugía por ahora — solo evaluación'
-      ],
-      en: [
-        'No, I come without prior preference — I want to be guided',
-        'I have heard of some options but I want the clinician to guide me',
-        'I have specific interest in one option',
-        'I am not considering surgery right now — just evaluation'
-      ]
+      es: ['No, vengo sin preferencia previa — quiero que me orienten','He oído de algunas opciones pero quiero que el clínico me oriente','Tengo interés específico en alguna opción','No estoy considerando cirugía por ahora — solo evaluación'],
+      en: ['No, I come without prior preference — I want to be guided','I have heard of some options but I want the clinician to guide me','I have specific interest in one option','I am not considering surgery right now — just evaluation']
     }
   },
   {
-    id: 'q16_open',
-    section: 's4',
-    type: 'text',
+    id: 'q16_open', section: 's4', type: 'text',
     q: { es: 'Antes de su cita, ¿hay algo más que le gustaría que sepamos sobre su visión, sus expectativas, o sus preocupaciones?', en: 'Before your visit, is there anything else you would like us to know about your vision, expectations, or concerns?' },
     helper: { es: 'Opcional — máximo 500 caracteres.', en: 'Optional — maximum 500 characters.' },
     optional: true
@@ -1668,696 +593,249 @@ const SECTIONS = {
   s4: { es: 'Información clínica', en: 'Clinical information' }
 };
 
-// ========== ALGORITHM ==========
 function getApplicableQuestions() {
-  return QUESTIONS.filter(q => {
-    if (q.condition && !q.condition(state.answers)) return false;
-    return true;
-  });
+  return QUESTIONS.filter(q => { if (q.condition && !q.condition(state.answers)) return false; return true; });
 }
 
+// ============================================================
+// CALCULATEOUTPUT — v6.3 nomenclatura corregida
+// ============================================================
 function calculateOutput() {
   const a = state.answers;
   const result = {
-    via: null,
-    viaLabel: null,
-    viaCode: null,
-    tier: null,
-    tierLabel: null,
-    redFlags: [],
-    yellowFlags: [],
-    greenFlags: [],
-    appliedRules: [],
-    narrative: '',
-    tierScores: { esencial: 0, activa: 0, completa: 0, medida: 0 },
-    // Technology scoring — Femto (FLACS) and Plus (WaveLight Plus)
-    techScores: { femto: 0, plus: 0 },
-    techRecommendations: []
+    via: null, viaLabel: null, viaCode: null,
+    tier: null, tierLabel: null,
+    redFlags: [], yellowFlags: [], greenFlags: [],
+    appliedRules: [], narrative: '',
+    tierScores: { esencial: 0, equilibrada: 0, completa: 0 }
   };
-
-  // ===== VIA CLÍNICA =====
-  // Rule 1 — Catarata diagnosticada
+  // === REGLAS DE VÍA CLÍNICA ===
   if (a.q2_reason === 0) {
     result.viaCode = 'D';
     result.via = 'Vía D — Cirugía de catarata premium';
     result.viaLabel = 'Cataract surgery with premium IOL';
     result.appliedRules.push('Regla 1: Catarata diagnosticada → Vía D');
-
-    // Special: post-LASIK with cataract
-    if (a.q3_correction === 7) {
-      result.appliedRules.push('Sub-regla: post-refractiva + catarata → recomendación específica de PureSee dentro de Vía D');
-    }
-  }
-  // Rule 2 — Miope alto <50
-  else if (Array.isArray(a.q3_1_magnitude) && a.q3_1_magnitude.includes(1) && (a.q1_age === 0 || a.q1_age === 1)) {
+    if (a.q3_correction === 7) result.appliedRules.push('Sub-regla: post-refractiva + catarata → recomendación específica de PureSee dentro de Vía D');
+  } else if (Array.isArray(a.q3_1_magnitude) && a.q3_1_magnitude.includes(1) && (a.q1_age === 0 || a.q1_age === 1)) {
     result.viaCode = 'B';
     result.via = 'Vía B — Refractiva fáquica (EVO ICL)';
     result.viaLabel = 'Phakic refractive (EVO ICL)';
     result.appliedRules.push('Regla 2: Miopía moderada/alta + edad <50 → Vía B (ICL recomendado, evitar cirugía corneal)');
-
-    // PVD risk if floaters reported
-    if (a.q3_2_floaters === 2 || a.q3_2_floaters === 3) {
-      result.yellowFlags.push({
-        label: 'Posible PVD',
-        detail: 'Miope <50 con flotadores nuevos frecuentes — evaluar PVD y considerar Vía C alternativa.'
-      });
-    }
-  }
-  // Rule 3 — Présbita 50+ sin catarata
-  else if ((a.q1_age >= 2) && (a.q2_reason === 1 || a.q2_reason === 2 || a.q2_reason === 4)) {
+    if (a.q3_2_floaters === 2 || a.q3_2_floaters === 3) result.yellowFlags.push({ label: 'Posible PVD', detail: 'Miope <50 con flotadores nuevos frecuentes — evaluar PVD y considerar Vía C alternativa.' });
+  } else if ((a.q1_age >= 2) && (a.q2_reason === 1 || a.q2_reason === 2 || a.q2_reason === 4)) {
     result.viaCode = 'C';
     result.via = 'Vía C — Lensectomía refractiva';
     result.viaLabel = 'Refractive lens exchange';
     result.appliedRules.push('Regla 3: Edad 50+ sin catarata + busca solución refractiva → Vía C (enfoque lenticular resuelve lejos y cerca)');
-
-    // If high interest in multifocality
-    if (a.q8_multifocal_interest === 0) {
-      result.appliedRules.push('Sub-regla: alto interés en multifocalidad → recomendación específica de Visión Completa');
-    }
-  }
-  // Rule 4 — Hipermétrope desesperado por salir de espejuelos (45+)
-  else if (Array.isArray(a.q3_1_magnitude) && a.q3_1_magnitude.includes(2) && a.q1_age >= 1 && a.q7_glasses_reading >= 3) {
+    if (a.q8_multifocal_interest === 0) result.appliedRules.push('Sub-regla: alto interés en multifocalidad → recomendación específica de Visión Completa');
+  } else if (Array.isArray(a.q3_1_magnitude) && a.q3_1_magnitude.includes(2) && a.q1_age >= 1 && a.q7_glasses_reading >= 3) {
     result.viaCode = 'C';
     result.via = 'Vía C — Lensectomía refractiva';
     result.viaLabel = 'Refractive lens exchange';
     result.appliedRules.push('Regla 4: Hipermetropía + edad 45+ + alta motivación de independencia → Vía C con multifocalidad como alternativa');
-  }
-  // Rule 5 — Pre-presbíope <50 sin presbicia
-  else if ((a.q1_age === 0 || a.q1_age === 1) && (a.q2_reason === 1 || a.q2_reason === 4) && (!Array.isArray(a.q3_1_magnitude) || !a.q3_1_magnitude.includes(4))) {
+  } else if ((a.q1_age === 0 || a.q1_age === 1) && (a.q2_reason === 1 || a.q2_reason === 4) && (!Array.isArray(a.q3_1_magnitude) || !a.q3_1_magnitude.includes(4))) {
     result.viaCode = 'A';
     result.via = 'Vía A — Refractiva corneal (Wavelight Plus)';
     result.viaLabel = 'Corneal refractive (Wavelight Plus)';
     result.appliedRules.push('Regla 5: Edad <50 + busca dejar espejuelos + sin presbicia dominante → Vía A (LASIK/PRK con Wavelight Plus)');
-
-    // Thin cornea flag
-    if (Array.isArray(a.q14_conditions) && a.q14_conditions.includes(9)) {
-      result.yellowFlags.push({
-        label: 'Posible córnea limítrofe',
-        detail: 'Auto-reporte de córnea delgada — evaluar Vía B (ICL) como alternativa si confirma en evaluación.'
-      });
-    }
-  }
-  // Rule 6 — Présbita temprano <50
-  else if (a.q1_age === 1 && (a.q2_reason === 2 || (Array.isArray(a.q3_1_magnitude) && a.q3_1_magnitude.includes(4)))) {
+    if (Array.isArray(a.q14_conditions) && a.q14_conditions.includes(9)) result.yellowFlags.push({ label: 'Posible córnea limítrofe', detail: 'Auto-reporte de córnea delgada — evaluar Vía B (ICL) como alternativa si confirma en evaluación.' });
+  } else if (a.q1_age === 1 && (a.q2_reason === 2 || (Array.isArray(a.q3_1_magnitude) && a.q3_1_magnitude.includes(4)))) {
     result.viaCode = 'E';
     result.via = 'Vía E — Tratamiento farmacológico (Vizz)';
     result.viaLabel = 'Pharmacological (Vizz drops)';
     result.appliedRules.push('Regla 6: Edad 40-49 con presbicia incipiente → Vía E como primera línea (gotas son efectivas en este grupo)');
-
-    if (a.q13_reversibility === 3) {
-      result.appliedRules.push('Sub-regla: paciente prefiere solución definitiva → Vía A o C como segunda línea si gotas no funcionan');
-    }
-  }
-  // Rule 6.5 — Paciente explorando (Q2=5) — ambigüedad deliberada
-  else if (a.q2_reason === 5) {
+    if (a.q13_reversibility === 3) result.appliedRules.push('Sub-regla: paciente prefiere solución definitiva → Vía A o C como segunda línea si gotas no funcionan');
+  } else if (a.q2_reason === 5) {
     result.viaCode = 'EXP';
     result.via = 'Evaluación informativa — paciente explorando sin certeza de procedimiento';
     result.viaLabel = 'Informational evaluation';
     result.appliedRules.push('Regla 6.5: Paciente declara que está explorando sin haber decidido procedimiento — consulta debe ser informativa, no orientada a vender tier.');
-  }
-  // Rule 7 — Caso ambiguo
-  else {
+  } else {
     result.viaCode = 'AMB';
     result.via = 'Evaluación clínica requerida — múltiples vías posibles';
     result.viaLabel = 'Clinical evaluation needed';
     result.appliedRules.push('Regla 7: Combinación no matchea regla específica — el cirujano evalúa con datos completos.');
   }
 
-  // ===== TIER SCORING =====
+  // === SCORING DE TIERS — Esencial / Equilibrada / Completa ===
   const score = result.tierScores;
-
-  // Q4 activities count
-  // New activity list (8 options): 0=Conducir, 1=Lectura, 2=Pantallas, 3=TV,
-  // 4=Deportes, 5=Manuales detallados (cocinar/costura/jardinería), 6=Social, 7=Todas
   if (Array.isArray(a.q4_activities)) {
-    // "Todas las anteriores son importantes para mí" (index 7) — full multi-distance lifestyle
-    if (a.q4_activities.includes(7)) {
+    if (a.q4_activities.includes(11)) {
       score.completa += 4;
     } else {
       const numActivities = a.q4_activities.length;
-      // Distance vision: driving + TV
-      const hasDistance = a.q4_activities.includes(0) || a.q4_activities.includes(3);
-      // Intermediate vision: screens (computer, phone, tablet)
-      const hasIntermediate = a.q4_activities.includes(2);
-      // Near vision: prolonged reading + detailed handwork
-      const hasNear = a.q4_activities.includes(1) || a.q4_activities.includes(5);
-
-      // Threshold lowered from 6 to 5 to match the consolidated 8-option list
-      // (proportional to old 12-option list where >=6 captured "amplia")
-      if (numActivities >= 5 && hasDistance && hasIntermediate && hasNear) {
-        score.completa += 3;
-      } else if (hasDistance && hasIntermediate && !hasNear) {
-        score.activa += 3;
-      } else if (hasNear && !hasDistance) {
-        score.esencial += 2;
-      }
+      const hasDistance = a.q4_activities.includes(0) || a.q4_activities.includes(1);
+      const hasIntermediate = a.q4_activities.includes(3) || a.q4_activities.includes(4);
+      const hasNear = a.q4_activities.includes(2) || a.q4_activities.includes(9);
+      if (numActivities >= 6 && hasDistance && hasIntermediate && hasNear) score.completa += 3;
+      else if (hasDistance && hasIntermediate && !hasNear) score.equilibrada += 3;
+      else if (hasNear && !hasDistance) score.esencial += 2;
     }
   }
-
-  // Q6 night driving
-  if (a.q6_night_driving === 3 || a.q6_night_driving === 4) {
-    score.activa += 3;
-    score.esencial += 1;
-  }
-
-  // Q7 glasses tolerance
-  if (a.q7_glasses_reading === 0 || a.q7_glasses_reading === 1) {
-    score.esencial += 3;
-    score.activa += 1;
-  } else if (a.q7_glasses_reading === 3 || a.q7_glasses_reading === 4) {
-    score.completa += 3;
-  }
-
-  // Q8 multifocal interest
-  if (a.q8_multifocal_interest === 0) {
-    score.completa += 2;
-  } else if (a.q8_multifocal_interest === 3) {
-    score.esencial += 2;
-  }
-
-  // Q9 halos — KEY question
-  if (a.q9_halos === 0) {
-    score.completa += 4;
-  } else if (a.q9_halos === 2) {
-    score.activa += 3;
-    score.esencial += 2;
-  }
-
-  // Q7.5 — Motivation behind refractive surgery
-  // Critical: not all refractive patients seek total independence
+  if (a.q6_night_driving === 3 || a.q6_night_driving === 4) { score.equilibrada += 3; score.esencial += 1; }
+  if (a.q7_glasses_reading === 0 || a.q7_glasses_reading === 1) { score.esencial += 3; score.equilibrada += 1; }
+  else if (a.q7_glasses_reading === 3 || a.q7_glasses_reading === 4) { score.completa += 3; }
+  if (a.q8_multifocal_interest === 0) score.completa += 2;
+  else if (a.q8_multifocal_interest === 3) score.esencial += 2;
+  if (a.q9_halos === 0) score.completa += 4;
+  else if (a.q9_halos === 2) { score.equilibrada += 3; score.esencial += 2; }
   if (a.q7_5_motivation !== undefined) {
-    if (a.q7_5_motivation === 0) {
-      // Functional independence — favor Completa
-      score.completa += 2;
-    } else if (a.q7_5_motivation === 1) {
-      // Safety reasons — patient does not push for independence, just security
-      score.activa += 2;
-      score.esencial += 1;
-      result.greenFlags.push({
-        label: 'Motivación de seguridad',
-        detail: 'Paciente busca cirugía por razones de seguridad, no por molestia con espejuelos. No presionar por independencia total — la conversación clínica debe partir de respeto a su contexto.'
-      });
+    if (a.q7_5_motivation === 0) score.completa += 2;
+    else if (a.q7_5_motivation === 1) {
+      score.equilibrada += 2; score.esencial += 1;
+      result.greenFlags.push({ label: 'Motivación de seguridad', detail: 'Paciente busca cirugía por razones de seguridad, no por molestia con espejuelos. No presionar por independencia total — la conversación clínica debe partir de respeto a su contexto.' });
     } else if (a.q7_5_motivation === 2) {
-      // Professional reasons
-      score.activa += 2;
-      result.greenFlags.push({
-        label: 'Motivación profesional',
-        detail: 'Cirugía considerada por razones laborales específicas — alinear conversación con uso profesional, no con independencia general.'
-      });
+      score.equilibrada += 2;
+      result.greenFlags.push({ label: 'Motivación profesional', detail: 'Cirugía considerada por razones laborales específicas — alinear conversación con uso profesional, no con independencia general.' });
     } else if (a.q7_5_motivation === 3) {
-      // Sports reasons
-      score.activa += 2;
-      result.greenFlags.push({
-        label: 'Motivación deportiva',
-        detail: 'Cirugía considerada para actividad deportiva — relevante: si profesión también de alto riesgo, considerar PRK.'
-      });
+      score.equilibrada += 2;
+      result.greenFlags.push({ label: 'Motivación deportiva', detail: 'Cirugía considerada para actividad deportiva — relevante: si profesión también de alto riesgo, considerar PRK.' });
     } else if (a.q7_5_motivation === 4) {
-      // Convenience — not pushing for full independence
-      score.activa += 2;
-      score.esencial += 1;
+      score.equilibrada += 2; score.esencial += 1;
     }
   }
-
-  // Q7.6 — Patient relationship with glasses/contacts
-  // Critical: patient who considers glasses part of identity should not be pushed toward Completa
   if (a.q7_6_glasses_relationship !== undefined) {
-    if (a.q7_6_glasses_relationship === 0) {
-      // Considers them a nuisance — push for Completa
-      score.completa += 2;
-    } else if (a.q7_6_glasses_relationship === 3) {
-      // Identity / not bothered — explicitly does NOT seek independence
-      score.completa -= 3;
-      score.activa += 2;
-      score.esencial += 2;
-      result.greenFlags.push({
-        label: 'Espejuelos como identidad',
-        detail: 'Paciente considera los espejuelos parte de su identidad o estilo. No presionar por independencia. Tier Esencial o Equilibrada con conversación honesta de que los espejuelos pueden seguir siendo parte de su vida postoperatoria es apropiado.'
-      });
-    } else if (a.q7_6_glasses_relationship === 4) {
-      // Uses but would like less dependence — moderate motivation
-      score.activa += 1;
-    } else if (a.q7_6_glasses_relationship === 6) {
-      // Contact lens user no longer tolerating — strong motivation for refractive solution
-      score.completa += 1;
-      score.activa += 2;
-      result.greenFlags.push({
-        label: 'Intolerancia a lentes de contacto',
-        detail: 'Paciente solo usaba lentes de contacto y ya no los tolera. Motivación clínica relevante para considerar opciones refractivas.'
-      });
+    if (a.q7_6_glasses_relationship === 0) score.completa += 2;
+    else if (a.q7_6_glasses_relationship === 3) {
+      score.completa -= 3; score.equilibrada += 2; score.esencial += 2;
+      result.greenFlags.push({ label: 'Espejuelos como identidad', detail: 'Paciente considera los espejuelos parte de su identidad o estilo. No presionar por independencia. Tier Esencial o Equilibrada con conversación honesta de que los espejuelos pueden seguir siendo parte de su vida postoperatoria es apropiado.' });
+    } else if (a.q7_6_glasses_relationship === 4) score.equilibrada += 1;
+    else if (a.q7_6_glasses_relationship === 6) {
+      score.completa += 1; score.equilibrada += 2;
+      result.greenFlags.push({ label: 'Intolerancia a lentes de contacto', detail: 'Paciente solo usaba lentes de contacto y ya no los tolera. Motivación clínica relevante para considerar opciones refractivas.' });
     } else if (a.q7_6_glasses_relationship === 8) {
-      // Post-refractive surgery patient — special clinical context
-      result.yellowFlags.push({
-        label: 'Post-cirugía refractiva previa',
-        detail: 'Paciente ya no usa corrección debido a cirugía refractiva previa (LASIK, PRK, RK, Kamra, ICL). Considerar: (1) contexto biomecánico/topográfico para nueva intervención, (2) posibles cambios en cálculo de IOL si requiere catarata, (3) expectativas calibradas según resultado previo. Verificar tipo y año exacto de cirugía durante consulta.'
-      });
+      result.yellowFlags.push({ label: 'Post-cirugía refractiva previa', detail: 'Paciente ya no usa corrección debido a cirugía refractiva previa (LASIK, PRK, RK, Kamra, ICL). Considerar: (1) contexto biomecánico/topográfico para nueva intervención, (2) posibles cambios en cálculo de IOL si requiere catarata, (3) expectativas calibradas según resultado previo. Verificar tipo y año exacto de cirugía durante consulta.' });
     }
   }
-
-  // Q3.3 — Occasional contact lens use
   if (a.q3_3_contacts_occasional !== undefined) {
     if (a.q3_3_contacts_occasional === 3) {
-      // Frequent alternating use — soft yellow flag for potential dry eye risk
-      result.yellowFlags.push({
-        label: 'Uso frecuente de lentes de contacto',
-        detail: 'Paciente alterna espejuelos y contactos la mayoría de los días — evaluar superficie ocular con atención al riesgo de ojo seco crónico subclínico antes de cualquier procedimiento premium.'
-      });
-      // Demonstrates tolerance to ocular manipulation — favors ICL candidacy if Vía B
-      if (result.viaCode === 'B') {
-        result.appliedRules.push('Sub-regla: alta tolerancia demostrada a manipulación ocular (uso frecuente de contactos) — refuerza candidatura natural a ICL.');
-      }
+      result.yellowFlags.push({ label: 'Uso frecuente de lentes de contacto', detail: 'Paciente alterna espejuelos y contactos la mayoría de los días — evaluar superficie ocular con atención al riesgo de ojo seco crónico subclínico antes de cualquier procedimiento premium.' });
+      if (result.viaCode === 'B') result.appliedRules.push('Sub-regla: alta tolerancia demostrada a manipulación ocular (uso frecuente de contactos) — refuerza candidatura natural a ICL.');
     } else if (a.q3_3_contacts_occasional === 1) {
-      // Occasional use only
-      if (result.viaCode === 'B') {
-        result.appliedRules.push('Sub-regla: uso ocasional de contactos reportado — tolerancia básica a manipulación ocular demostrada.');
-      }
-      if (a.q7_5_motivation === 1 || a.q7_5_motivation === 3) {
-        result.appliedRules.push('Sub-regla: uso situacional de contactos coincide con motivación de seguridad/deportiva — la cirugía resolvería específicamente esos contextos donde los espejuelos son obstáculo.');
-      }
+      if (result.viaCode === 'B') result.appliedRules.push('Sub-regla: uso ocasional de contactos reportado — tolerancia básica a manipulación ocular demostrada.');
+      if (a.q7_5_motivation === 1 || a.q7_5_motivation === 3) result.appliedRules.push('Sub-regla: uso situacional de contactos coincide con motivación de seguridad/deportiva — la cirugía resolvería específicamente esos contextos donde los espejuelos son obstáculo.');
     } else if (a.q3_3_contacts_occasional === 2) {
-      // Regular use
-      if (result.viaCode === 'B') {
-        result.appliedRules.push('Sub-regla: uso regular de contactos demostrado — buena tolerancia a manipulación ocular, candidato natural a ICL.');
-      }
-      if (a.q7_5_motivation === 1 || a.q7_5_motivation === 3) {
-        result.appliedRules.push('Sub-regla: uso situacional de contactos coincide con motivación de seguridad/deportiva — la cirugía resolvería específicamente esos contextos donde los espejuelos son obstáculo.');
-      }
+      if (result.viaCode === 'B') result.appliedRules.push('Sub-regla: uso regular de contactos demostrado — buena tolerancia a manipulación ocular, candidato natural a ICL.');
+      if (a.q7_5_motivation === 1 || a.q7_5_motivation === 3) result.appliedRules.push('Sub-regla: uso situacional de contactos coincide con motivación de seguridad/deportiva — la cirugía resolvería específicamente esos contextos donde los espejuelos son obstáculo.');
     } else if (a.q3_3_contacts_occasional === 4) {
-      // Did not tolerate contacts
-      result.yellowFlags.push({
-        label: 'Intolerancia previa a lentes de contacto',
-        detail: 'Paciente probó contactos sin tolerarlos. Si vía es B (ICL), conversación específica sobre que ICL no requiere manipulación postoperatoria continua — la intolerancia previa no contraindica ICL pero sí justifica explicación clara.'
-      });
+      result.yellowFlags.push({ label: 'Intolerancia previa a lentes de contacto', detail: 'Paciente probó contactos sin tolerarlos. Si vía es B (ICL), conversación específica sobre que ICL no requiere manipulación postoperatoria continua — la intolerancia previa no contraindica ICL pero sí justifica explicación clara.' });
     }
   }
-
-  // Q15.5 — Preformed preference
   if (a.q15_5_preformed === 2) {
-    result.yellowFlags.push({
-      label: 'Preferencia preformada',
-      detail: 'Paciente llega con interés específico en una opción. Validar que su preferencia coincide con criterio clínico apropiado. Si no coincide, conversación específica sobre por qué la opción que él prefiere puede no ser óptima para sus ojos.'
-    });
+    result.yellowFlags.push({ label: 'Preferencia preformada', detail: 'Paciente llega con interés específico en una opción. Validar que su preferencia coincide con criterio clínico apropiado. Si no coincide, conversación específica sobre por qué la opción que él prefiere puede no ser óptima para sus ojos.' });
   } else if (a.q15_5_preformed === 3) {
     result.appliedRules.push('Sub-regla: paciente declara que no está considerando cirugía — orientar consulta como informativa.');
   }
 
-  // Q14 clinical flags — restrictions
+  // === BANDERAS POR CONDICIONES OCULARES ===
+  let keratoconusForcedTier = false;
   if (Array.isArray(a.q14_conditions)) {
-    // Macular pathology — exclude Completa
     const macularRed = a.q14_conditions.includes(2) || a.q14_conditions.includes(3) || a.q14_conditions.includes(4);
     if (macularRed) {
-      score.completa = -10; // categorically excluded
-      result.redFlags.push({
-        label: 'Patología macular',
-        detail: 'Visión Completa categóricamente excluida. Priorizar Activa o Esencial. Workup macular específico antes de la cita.'
-      });
+      score.completa = -10;
+      result.redFlags.push({ label: 'Patología macular', detail: 'Visión Completa categóricamente excluida. Priorizar Equilibrada o Esencial. Workup macular específico antes de la cita.' });
     }
-
-    // Keratoconus — Red flag for specialized evaluation
-    // NOTE: Visión Combinada is NOT auto-assigned by algorithm.
-    // It is reserved for mix & match cases that the surgeon decides clinically post-evaluation.
-    // Keratoconus triggers a red flag for Apthera IC-8 evaluation (within Equilibrada or Completa tier).
     if (a.q14_conditions.includes(5)) {
-      result.redFlags.push({
-        label: 'Queratocono diagnosticado',
-        detail: 'Requiere evaluación clínica especializada. Apthera IC-8 es opción a considerar en tier Equilibrada o Completa según evaluación. El tier Visión Combinada queda reservado para casos de mix & match que el cirujano determine clínicamente.'
-      });
+      // OVERRIDE FORZADO: queratocono = Apthera IC-8 = Equilibrada (decisión clínica firme)
+      keratoconusForcedTier = true;
+      score.equilibrada += 15; // peso fuerte para garantizar Equilibrada como max
+      score.completa = -10;    // multifocales contraindicadas en córnea irregular
+      result.redFlags.push({ label: 'Queratocono diagnosticado', detail: 'Evaluación específica para Apthera IC-8 (subopción dentro del tier Equilibrada). Pentacam y aberrometría preoperatorios. Override forzado: tier asignado a Equilibrada por anatomía corneal irregular.' });
+      result.appliedRules.push('Override clínico: queratocono → tier Equilibrada (Apthera IC-8 como subopción). Multifocales corneales y trifocales contraindicadas.');
     }
-
-    // Glaucoma
-    if (a.q14_conditions.includes(1)) {
-      result.yellowFlags.push({
-        label: 'Glaucoma diagnosticado',
-        detail: 'Protocolo específico de glaucoma + premium. Evaluar MIGS concurrente cuando aplique.'
-      });
-    }
-
-    // Dry eye
-    if (a.q14_conditions.includes(6)) {
-      result.yellowFlags.push({
-        label: 'Ojo seco crónico',
-        detail: 'Protocolo OSD preoperatorio (ASCRS Algorithm 2026). Postergar cirugía premium hasta superficie estable.'
-      });
-    }
+    if (a.q14_conditions.includes(1)) result.yellowFlags.push({ label: 'Glaucoma diagnosticado', detail: 'Protocolo específico de glaucoma + premium. Evaluar MIGS concurrente cuando aplique.' });
+    if (a.q14_conditions.includes(6)) result.yellowFlags.push({ label: 'Ojo seco crónico', detail: 'Protocolo OSD preoperatorio (ASCRS Algorithm 2026). Postergar cirugía premium hasta superficie estable.' });
   }
-
-  // Q14_5 medications
   if (Array.isArray(a.q14_5_meds)) {
-    if (a.q14_5_meds.includes(0)) {
-      result.yellowFlags.push({
-        label: 'Tamsulosina (Flomax)',
-        detail: 'Riesgo de IFIS intraoperatorio. Anticipar técnica con expansores iridianos en cirugía de catarata.'
-      });
-    }
-    if (a.q14_5_meds.includes(1)) {
-      result.yellowFlags.push({
-        label: 'Anticoagulación',
-        detail: 'Coordinar con médico tratante para manejo perioperatorio.'
-      });
-    }
-    if (a.q14_5_meds.includes(2)) {
-      result.yellowFlags.push({
-        label: 'Diabetes',
-        detail: 'Confirmar HbA1c reciente. HbA1c >7 sugiere diferir cirugía electiva hasta optimización.'
-      });
-    }
+    if (a.q14_5_meds.includes(0)) result.yellowFlags.push({ label: 'Tamsulosina (Flomax)', detail: 'Riesgo de IFIS intraoperatorio. Anticipar técnica con expansores iridianos en cirugía de catarata.' });
+    if (a.q14_5_meds.includes(1)) result.yellowFlags.push({ label: 'Anticoagulación', detail: 'Coordinar con médico tratante para manejo perioperatorio.' });
+    if (a.q14_5_meds.includes(2)) result.yellowFlags.push({ label: 'Diabetes', detail: 'Confirmar HbA1c reciente. HbA1c >7 sugiere diferir cirugía electiva hasta optimización.' });
   }
-
-  // Q10 expectations — RED FLAG (categorical penalty, not just +2)
   if (a.q10_expectations === 0) {
-    result.redFlags.push({
-      label: 'Expectativas inalcanzables',
-      detail: 'Conversación específica de calibración de expectativas antes de cualquier discusión de tier premium.'
-    });
-    // Categorical: this patient cannot be Completa under any circumstance
-    score.completa = -10;
-    score.activa -= 3;
-    score.esencial += 3;
+    result.redFlags.push({ label: 'Expectativas inalcanzables', detail: 'Conversación específica de calibración de expectativas antes de cualquier discusión de tier premium.' });
+    score.completa = -10; score.equilibrada -= 3; score.esencial += 3;
   }
-
-  // Q12 — yellow flag if "insiste lo más avanzado" — now with stronger scoring impact
   if (a.q12_recommendation === 2) {
-    result.yellowFlags.push({
-      label: 'Prioriza prestigio sobre criterio clínico',
-      detail: 'Conversación específica de criterios de selección clínica. Riesgo elevado de insatisfacción postoperatoria.'
-    });
-    // Toxic insistence pattern — actively pull down Completa scoring
-    score.completa -= 4;
-    score.activa += 1;
+    result.yellowFlags.push({ label: 'Prioriza prestigio sobre criterio clínico', detail: 'Conversación específica de criterios de selección clínica. Riesgo elevado de insatisfacción postoperatoria.' });
+    score.completa -= 4; score.equilibrada += 1;
   }
-
-  // Q11 — yellow flag if family had bad experience
-  if (a.q11_family === 2) {
-    result.yellowFlags.push({
-      label: 'Familiar con outcome problemático',
-      detail: 'Desconfianza preformada. Dedicar tiempo adicional en consulta — no apresurar decisión.'
-    });
-  }
-
-  // Q15 — high-trauma profession
-  if (a.q15_profession === 1 || a.q15_profession === 4) {
-    result.yellowFlags.push({
-      label: 'Profesión alto riesgo trauma facial',
-      detail: 'Si vía es A (refractiva corneal), preferir PRK sobre LASIK por mejor perfil biomecánico.'
-    });
-  }
-
-  // Conductor profesional — penaliza Completa fuertemente, no solo eleva Activa
+  if (a.q11_family === 2) result.yellowFlags.push({ label: 'Familiar con outcome problemático', detail: 'Desconfianza preformada. Dedicar tiempo adicional en consulta — no apresurar decisión.' });
+  if (a.q15_profession === 1 || a.q15_profession === 4) result.yellowFlags.push({ label: 'Profesión alto riesgo trauma facial', detail: 'Si vía es A (refractiva corneal), preferir PRK sobre LASIK por mejor perfil biomecánico.' });
   if (a.q15_profession === 3) {
-    result.yellowFlags.push({
-      label: 'Conductor profesional',
-      detail: 'Conducción nocturna profesional — minimización de halos es prioridad. Visión Equilibrada con Monofocales Plus es opción más segura que Visión Completa con multifocales.'
-    });
-    score.completa -= 4;
-    score.activa += 3;
+    result.yellowFlags.push({ label: 'Conductor profesional', detail: 'Conducción nocturna profesional — minimización de halos es prioridad. Visión Equilibrada con Monofocales Plus es opción más segura que Visión Completa con multifocales.' });
+    score.completa -= 4; score.equilibrada += 3;
   }
-
-  // Q14.5 — Tamsulosina añade penalización a Completa por riesgo IFIS si Vía D
   if (Array.isArray(a.q14_5_meds) && a.q14_5_meds.includes(0) && result.viaCode === 'D') {
     score.completa -= 1;
     result.appliedRules.push('Sub-regla: tamsulosina + Vía D — IFIS aumenta riesgo de complicación intraoperatoria que puede comprometer outcome multifocal. Considerar tier más conservador.');
   }
-
-  // Q13 reversibility for under-50 with presbyopia
   if (a.q13_reversibility === 0 && a.q1_age <= 1 && Array.isArray(a.q3_1_magnitude) && a.q3_1_magnitude.includes(4)) {
     result.appliedRules.push('Sub-regla: alta preferencia por reversibilidad → fortalece Vía E (gotas reversibles)');
   }
-
-  // ===== TIER ORTHOGONALITY CHECK =====
-  // Vía B (ICL monofocal) and Vía E (drops) do NOT support multifocality
-  // Cap Completa scoring for these vías — tier is nominal, not multifocal
   if (result.viaCode === 'B' || result.viaCode === 'E') {
     score.completa = Math.min(score.completa, 0);
-    result.appliedRules.push(`Restricción anatómica: Vía ${result.viaCode} no soporta multifocalidad — el tier funciona como nominal, no multifocal. Tier Completa excluida operativamente para este paciente.`);
+    result.appliedRules.push('Restricción anatómica: Vía ' + result.viaCode + ' no soporta multifocalidad — el tier funciona como nominal, no multifocal. Tier Completa excluida operativamente para este paciente.');
   }
 
-  // ===== TIER FINAL =====
+  // === MAX TIER — 3 tiers asignables ===
   let maxTier = 'esencial';
   let maxScore = score.esencial;
-  if (score.activa > maxScore) { maxTier = 'activa'; maxScore = score.activa; }
+  if (score.equilibrada > maxScore) { maxTier = 'equilibrada'; maxScore = score.equilibrada; }
   if (score.completa > maxScore) { maxTier = 'completa'; maxScore = score.completa; }
-  if (score.medida > maxScore) { maxTier = 'medida'; maxScore = score.medida; }
 
-  const tierMap = {
-    esencial: 'Visión Esencial',
-    activa: 'Visión Equilibrada',
-    completa: 'Visión Completa',
-    medida: 'Visión Combinada'
-  };
+  // OVERRIDE: queratocono fuerza Equilibrada independiente del scoring
+  if (keratoconusForcedTier) maxTier = 'equilibrada';
 
+  const tierMap = { esencial: 'Visión Esencial', equilibrada: 'Visión Equilibrada', completa: 'Visión Completa' };
   result.tier = tierMap[maxTier];
   result.tierLabel = maxTier;
 
-  // ===== TECHNOLOGY SCORING =====
-  // Femto (FLACS) and Plus (WaveLight Plus) — three-layer logic:
-  //   Layer 1: Cumulative scoring from individual signals
-  //   Layer 2: Categorical strong-trigger rules (force flag regardless of cumulative score)
-  //   Layer 3: Threshold check on cumulative score
-
-  const tech = result.techScores;
-  const isCataract = a.q2_reason === 0;
-  const isLenticularRemoval = (result.viaCode === 'C' || result.viaCode === 'D');
-  const isCornealApproach = result.viaCode === 'A';
-  const isDemandingProfession = a.q15_profession === 0; // "yes, my profession depends on excellent vision"
-  const isInvestmentOpen = (a.q13_5_investment === 0 || a.q13_5_investment === 1);
-  const hasAstigmatismSignif = Array.isArray(a.q3_1_magnitude) && a.q3_1_magnitude.includes(2);
-  const isFrequentNightDriver = a.q6_night_driving === 3 || a.q6_night_driving === 4;
-  const dislikesHalos = a.q9_halos === 2;
-  const hasPriorRefractive = a.q3_correction === 7 || (Array.isArray(a.q14_conditions) && a.q14_conditions.includes(7));
-  const familyGoodResult = a.q11_family === 0;
-
-  // ----- LAYER 1: Cumulative scoring -----
-
-  // FEMTO scoring
-  if (isLenticularRemoval) {
-    if (a.q1_age >= 4) tech.femto += 2;        // 70+: dense cataract probable
-    else if (a.q1_age === 3) tech.femto += 1;   // 60-69: moderate density probable
-
-    if (hasAstigmatismSignif) tech.femto += 3;  // Astigmatism → tóric IOL + arcuate incisions
-
-    if (maxTier === 'activa' && isCataract) tech.femto += 2;
-    if (maxTier === 'completa') tech.femto += 4; // Premium IOL benefits most from FLACS precision
-    if (maxTier === 'medida') tech.femto += 2;
-
-    if (isInvestmentOpen) tech.femto += 2;
-    if (hasPriorRefractive) tech.femto += 2;     // Post-LASIK requires precision
-    if (isDemandingProfession) tech.femto += 1;
-
-    // Clinical complexity flags increase Femto value
-    if (Array.isArray(a.q14_conditions)) {
-      if (a.q14_conditions.includes(5)) tech.femto += 2; // Keratoconus
-      if (a.q14_conditions.includes(6)) tech.femto += 1; // Severe dry eye (precision matters)
-    }
-  }
-
-  // PLUS scoring (only relevant for corneal approach)
-  if (isCornealApproach) {
-    if (isFrequentNightDriver) tech.plus += 3;
-    if (dislikesHalos) tech.plus += 2;
-    if (isDemandingProfession) tech.plus += 3;
-    if (a.q1_age <= 1) tech.plus += 1; // Young patient with longer life ahead with results
-    if (maxTier === 'activa') tech.plus += 2;
-    if (isInvestmentOpen) tech.plus += 2;
-    if (familyGoodResult) tech.plus += 1;
-
-    // Higher myopia/astigmatism → more HOA risk → Plus benefit
-    if (Array.isArray(a.q3_1_magnitude) && a.q3_1_magnitude.includes(1)) tech.plus += 2; // Myopia
-    if (hasAstigmatismSignif) tech.plus += 2;
-  }
-
-  // ----- LAYER 2: Categorical strong triggers (force inclusion regardless of score) -----
-
-  let femtoForced = false;
-  let plusForced = false;
-
-  // FEMTO strong triggers
-  if (isLenticularRemoval) {
-    if (hasAstigmatismSignif && (maxTier === 'activa' || maxTier === 'completa')) {
-      femtoForced = true;
-    }
-    if (maxTier === 'completa' && isCataract) {
-      femtoForced = true; // Premium IOL → FLACS strongly indicated
-    }
-    if (hasPriorRefractive && isCataract) {
-      femtoForced = true; // Post-refractive → precision essential
-    }
-  }
-
-  // PLUS strong triggers
-  if (isCornealApproach) {
-    if (isFrequentNightDriver && maxTier === 'activa') {
-      plusForced = true;
-    }
-    if (isDemandingProfession) {
-      plusForced = true;
-    }
-  }
-
-  // ----- LAYER 3: Threshold check + recommendation generation -----
-
-  const FEMTO_THRESHOLD = 6;
-  const PLUS_THRESHOLD = 6;
-
-  if (femtoForced || tech.femto >= FEMTO_THRESHOLD) {
-    // Build justification from active signals
-    const femtoSignals = [];
-    if (hasAstigmatismSignif) femtoSignals.push('astigmatismo significativo reportado');
-    if (maxTier === 'completa') femtoSignals.push('tier Completa con IOL premium (precisión de capsulotomía crítica para centración)');
-    if (a.q1_age >= 3) femtoSignals.push('edad con catarata moderada-densa probable');
-    if (hasPriorRefractive) femtoSignals.push('cirugía refractiva previa (cálculo de IOL más complejo)');
-    if (isInvestmentOpen) femtoSignals.push('apertura a inversión adicional');
-    if (Array.isArray(a.q14_conditions) && a.q14_conditions.includes(5)) femtoSignals.push('queratocono diagnosticado');
-    if (Array.isArray(a.q14_conditions) && a.q14_conditions.includes(6)) femtoSignals.push('ojo seco severo (precisión beneficiosa)');
-
-    result.yellowFlags.push({
-      label: 'Considerar evaluación de Femto (FLACS)',
-      detail: `Señales del perfil: ${femtoSignals.join(', ')}. Evaluaciones pendientes para confirmar indicación: densidad de catarata (lámpara de hendidura), queratometría/topografía, evaluación endotelial. Ventaja diferencial para este caso: capsulotomía precisa centrada en eje visual, fragmentación pre-faco que reduce energía ultrasónica, e incisiones arcuatas guiadas que corrigen astigmatismo de forma más predecible.`
-    });
-    result.techRecommendations.push({
-      tech: 'femto',
-      score: tech.femto,
-      forced: femtoForced
-    });
-    result.appliedRules.push(`Tecnología sugerida: Femto (FLACS) — score ${tech.femto}${femtoForced ? ' (trigger categórico)' : ''}`);
-  }
-
-  if (plusForced || tech.plus >= PLUS_THRESHOLD) {
-    const plusSignals = [];
-    if (isFrequentNightDriver) plusSignals.push('conducción nocturna frecuente (sensibilidad a halos/glare)');
-    if (dislikesHalos) plusSignals.push('preferencia explícita por evitar halos');
-    if (isDemandingProfession) plusSignals.push('profesión con demandas visuales altas');
-    if (Array.isArray(a.q3_1_magnitude) && a.q3_1_magnitude.includes(1)) plusSignals.push('miopía moderada-alta (mayor riesgo de aberraciones inducidas con LASIK estándar)');
-    if (hasAstigmatismSignif) plusSignals.push('astigmatismo significativo');
-    if (a.q1_age <= 1) plusSignals.push('paciente joven (resultados de larga duración esperados)');
-    if (isInvestmentOpen) plusSignals.push('apertura a inversión adicional');
-
-    result.yellowFlags.push({
-      label: 'Considerar evaluación de WaveLight Plus',
-      detail: `Señales del perfil: ${plusSignals.join(', ')}. Evaluaciones pendientes para confirmar indicación: aberrometría con SightMap (medición de aberraciones de orden alto), topografía corneal, paquimetría, tamaño pupilar mesópico. Ventaja diferencial para este caso: corrección personalizada de aberraciones de orden alto mediante ray-tracing AI, mejor calidad visual nocturna que LASIK estándar, reducción significativa de halos/glare/starbursts postoperatorios.`
-    });
-    result.techRecommendations.push({
-      tech: 'plus',
-      score: tech.plus,
-      forced: plusForced
-    });
-    result.appliedRules.push(`Tecnología sugerida: WaveLight Plus — score ${tech.plus}${plusForced ? ' (trigger categórico)' : ''}`);
-  }
-
-  // ===== GREEN FLAGS =====
+  // === BANDERAS VERDES POR PERFIL IDEAL ===
   if (maxTier === 'completa' && a.q9_halos === 0 && a.q7_glasses_reading >= 3 && a.q10_expectations === 1) {
-    result.greenFlags.push({
-      label: 'Perfil ideal Visión Completa',
-      detail: 'Convergencia de criterios — paciente alineado con tier Completa.'
-    });
+    result.greenFlags.push({ label: 'Perfil ideal Visión Completa', detail: 'Convergencia de criterios — paciente alineado con tier Completa.' });
   }
-  if (maxTier === 'activa' && a.q9_halos === 2 && a.q6_night_driving >= 3) {
-    result.greenFlags.push({
-      label: 'Perfil ideal Visión Equilibrada',
-      detail: 'Conductor nocturno frecuente con preferencia por evitar halos — alineación clara con Equilibrada.'
-    });
+  if (maxTier === 'equilibrada' && a.q9_halos === 2 && a.q6_night_driving >= 3) {
+    result.greenFlags.push({ label: 'Perfil ideal Visión Equilibrada', detail: 'Conductor nocturno frecuente con preferencia por evitar halos — alineación clara con Equilibrada.' });
   }
 
-  // ===== NARRATIVE =====
+  // NOTA: Visión Combinada (mix & match) NO es asignada por algoritmo — decisión clínica del cirujano post-evaluación
+
   result.narrative = generateNarrative(a, result);
-
   return result;
 }
 
 function generateNarrative(a, result) {
   const ageMap = ['menor de 40', '40-49', '50-59', '60-69', '70+'];
   const correctionMap = ['sin corrección actual', 'espejuelos solo para leer', 'espejuelos solo para distancia', 'espejuelos para todo (uso constante)', 'dos pares de espejuelos (lectura y distancia)', 'progresivos o bifocales', 'lentes de contacto', 'post-cirugía refractiva (LASIK/PRK/RK/Kamra/ICL)'];
-
-  let narrative = `Paciente de ${ageMap[a.q1_age]} años, ${correctionMap[a.q3_correction] || 'corrección no especificada'}. `;
-
-  // Add reason
+  let narrative = 'Paciente de ' + ageMap[a.q1_age] + ' años, ' + (correctionMap[a.q3_correction] || 'corrección no especificada') + '. ';
   const reasonMap = ['catarata diagnosticada', 'busca dejar de usar espejuelos', 'dificultad para ver de cerca', 'visión borrosa o distorsionada', 'razones de seguridad/profesional/deportiva', 'explorando sin certeza de procedimiento', 'consulta de seguimiento'];
-  narrative += `Motivo de consulta: ${reasonMap[a.q2_reason]}. `;
-
-  // Current relationship with correction (q7_6) — actual state, not hypothetical
+  narrative += 'Motivo de consulta: ' + reasonMap[a.q2_reason] + '. ';
   if (a.q7_6_glasses_relationship !== undefined) {
-    const relMap = [
-      'Considera espejuelos/contactos un fastidio que quiere eliminar',
-      'Los usa sin problema pero preferiría no necesitarlos',
-      'Los usa como parte neutral de su rutina',
-      'Los considera parte de su identidad o estilo',
-      'Los usa por necesidad pero quisiera depender menos',
-      'Solo usa lentes de contacto y los tolera bien',
-      'Solo usa lentes de contacto pero ya no los tolera como antes',
-      'No usa espejuelos ni lentes de contacto',
-      'No usa espejuelos ni lentes de contacto por cirugía refractiva previa (LASIK/PRK/RK/Kamra/ICL)'
-    ];
-    narrative += `Relación actual: ${relMap[a.q7_6_glasses_relationship]}. `;
+    const relMap = ['Considera espejuelos/contactos un fastidio que quiere eliminar','Los usa sin problema pero preferiría no necesitarlos','Los usa como parte neutral de su rutina','Los considera parte de su identidad o estilo','Los usa por necesidad pero quisiera depender menos','Solo usa lentes de contacto y los tolera bien','Solo usa lentes de contacto pero ya no los tolera como antes','No usa espejuelos ni lentes de contacto','No usa espejuelos ni lentes de contacto por cirugía refractiva previa (LASIK/PRK/RK/Kamra/ICL)'];
+    narrative += 'Relación actual: ' + relMap[a.q7_6_glasses_relationship] + '. ';
   }
-
-  // Activities
   if (Array.isArray(a.q4_activities) && a.q4_activities.length > 0) {
-    // Index 7 is "Todas las anteriores son importantes para mí" (after activity consolidation)
-    if (a.q4_activities.includes(7)) {
-      narrative += 'Vida visual amplia con todas las actividades cotidianas relevantes. ';
-    } else if (a.q4_activities.length >= 5) {
-      narrative += 'Vida visual amplia con múltiples demandas. ';
-    } else if (a.q4_activities.length >= 3) {
-      narrative += 'Vida visual moderada. ';
-    } else {
-      narrative += 'Vida visual focalizada. ';
-    }
+    if (a.q4_activities.includes(7)) narrative += 'Vida visual amplia con todas las actividades cotidianas relevantes. ';
+    else if (a.q4_activities.length >= 5) narrative += 'Vida visual amplia con múltiples demandas. ';
+    else if (a.q4_activities.length >= 3) narrative += 'Vida visual moderada. ';
+    else narrative += 'Vida visual focalizada. ';
   }
-
-  // Night driving
-  if (a.q6_night_driving === 3 || a.q6_night_driving === 4) {
-    narrative += 'Conduce de noche frecuentemente. ';
-  }
-
-  // Hypothetical tolerance to post-procedure glasses (q7_glasses_reading is HYPOTHETICAL/FUTURE)
-  if (a.q7_glasses_reading === 4) {
-    narrative += 'Hipotéticamente prioriza independencia total de espejuelos post-procedimiento. ';
-  } else if (a.q7_glasses_reading <= 1) {
-    narrative += 'Hipotéticamente toleraría usar espejuelos para tareas específicas post-procedimiento. ';
-  }
-
-  // Halos (also hypothetical)
-  if (a.q9_halos === 0) {
-    narrative += 'Hipotéticamente aceptaría halos suaves a cambio de independencia. ';
-  } else if (a.q9_halos === 2) {
-    narrative += 'Hipotéticamente prefiere no tener halos aunque mantenga espejuelos para lectura. ';
-  }
-
-  // Open text
-  if (a.q16_open && a.q16_open.trim().length > 0) {
-    narrative += `Comentario abierto del paciente: "${a.q16_open.substring(0, 200)}".`;
-  }
-
-  // Clinical context note for lenticular approach (cataract vs RLE)
-  // This helps the clinical team frame the conversation correctly
-  if (a.q2_reason === 0) {
-    // Patient has diagnosed cataract — clinical scenario is cataract surgery
-    narrative += ' [Contexto: catarata diagnosticada — escenario de cirugía de catarata con cobertura de plan médico.]';
-  } else if (a.q1_age >= 2 && (a.q2_reason === 1 || a.q2_reason === 2) && a.q3_correction !== 7) {
-    // Age 50+, seeking to stop glasses or near-vision difficulty, no prior refractive surgery
-    // Likely candidate for RLE/lensectomía refractiva (electiva, sin cobertura)
-    narrative += ' [Contexto: posible candidato a Lensectomía Refractiva (RLE) electiva — sin diagnóstico de catarata, sin cobertura de plan médico estándar.]';
-  }
-
+  if (a.q6_night_driving === 3 || a.q6_night_driving === 4) narrative += 'Conduce de noche frecuentemente. ';
+  if (a.q7_glasses_reading === 4) narrative += 'Hipotéticamente prioriza independencia total de espejuelos post-procedimiento. ';
+  else if (a.q7_glasses_reading <= 1) narrative += 'Hipotéticamente toleraría usar espejuelos para tareas específicas post-procedimiento. ';
+  if (a.q9_halos === 0) narrative += 'Hipotéticamente aceptaría halos suaves a cambio de independencia. ';
+  else if (a.q9_halos === 2) narrative += 'Hipotéticamente prefiere no tener halos aunque mantenga espejuelos para lectura. ';
+  if (a.q16_open && a.q16_open.trim().length > 0) narrative += 'Comentario abierto del paciente: "' + a.q16_open.substring(0, 200) + '".';
   return narrative;
 }
 
-// ========== UI RENDERING ==========
 function render() {
   const main = document.getElementById('main');
   const progressWrapper = document.getElementById('progressWrapper');
-
-  if (state.currentScreen === 'welcome') {
-    progressWrapper.style.display = 'none';
-    renderWelcome();
-  } else if (state.currentScreen === 'questions') {
-    progressWrapper.style.display = 'block';
-    renderQuestion();
-  } else if (state.currentScreen === 'confirm') {
-    progressWrapper.style.display = 'none';
-    renderConfirmation();
-  } else if (state.currentScreen === 'output') {
-    progressWrapper.style.display = 'none';
-    renderOutput();
-  }
+  if (state.currentScreen === 'welcome') { progressWrapper.style.display = 'none'; renderWelcome(); }
+  else if (state.currentScreen === 'questions') { progressWrapper.style.display = 'block'; renderQuestion(); }
+  else if (state.currentScreen === 'confirm') { progressWrapper.style.display = 'none'; renderConfirmation(); }
+  else if (state.currentScreen === 'output') { progressWrapper.style.display = 'none'; renderOutput(); }
 }
 
 function renderWelcome() {
@@ -2366,85 +844,53 @@ function renderWelcome() {
   const hasSaved = saved && Object.keys(saved.answers || {}).length > 0;
   let savedDate = '';
   if (hasSaved && saved.savedAt) {
-    try {
-      const d = new Date(saved.savedAt);
-      savedDate = d.toLocaleDateString(state.lang === 'es' ? 'es-PR' : 'en-US', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
-    } catch (e) {}
+    try { const d = new Date(saved.savedAt); savedDate = d.toLocaleDateString(state.lang === 'es' ? 'es-PR' : 'en-US', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }); } catch (e) {}
   }
   const answeredCount = hasSaved ? Object.keys(saved.answers).length : 0;
-
   const resumeBlock = hasSaved ? `
     <div class="welcome-card resume-card">
       <h3>${state.lang === 'es' ? '¿Continuar donde lo dejó?' : 'Continue where you left off?'}</h3>
       <p style="margin-bottom:14px;">
-        ${state.lang === 'es'
-          ? `Tiene ${answeredCount} respuesta${answeredCount === 1 ? '' : 's'} guardada${answeredCount === 1 ? '' : 's'}${savedDate ? ' del ' + savedDate : ''}.`
-          : `You have ${answeredCount} saved answer${answeredCount === 1 ? '' : 's'}${savedDate ? ' from ' + savedDate : ''}.`}
+        ${state.lang === 'es' ? `Tiene ${answeredCount} respuesta${answeredCount === 1 ? '' : 's'} guardada${answeredCount === 1 ? '' : 's'}${savedDate ? ' del ' + savedDate : ''}.` : `You have ${answeredCount} saved answer${answeredCount === 1 ? '' : 's'}${savedDate ? ' from ' + savedDate : ''}.`}
       </p>
       <div style="display:flex; gap:10px; flex-wrap:wrap;">
-        <button class="btn btn-primary" style="flex:1; min-width:140px;" onclick='resumeFromSaved(${JSON.stringify(saved).replace(/'/g, "&#39;")})'>
-          ${state.lang === 'es' ? 'Continuar' : 'Continue'}
-        </button>
-        <button class="btn btn-secondary" style="flex:1; min-width:140px;" onclick="startFresh()">
-          ${state.lang === 'es' ? 'Empezar de nuevo' : 'Start fresh'}
-        </button>
+        <button class="btn btn-primary" style="flex:1; min-width:140px;" onclick='resumeFromSaved(${JSON.stringify(saved).replace(/'/g, "&#39;")})'>${state.lang === 'es' ? 'Continuar' : 'Continue'}</button>
+        <button class="btn btn-secondary" style="flex:1; min-width:140px;" onclick="startFresh()">${state.lang === 'es' ? 'Empezar de nuevo' : 'Start fresh'}</button>
       </div>
-    </div>
-  ` : '';
-
+    </div>` : '';
   document.getElementById('main').innerHTML = `
     <div class="welcome">
-      <div class="compass-icon">
+      <div class="compass-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24"><path d="M12 2L8 8l4 14 4-14-4-6zm0 4l2 3-2 7-2-7 2-3z"/></svg>
       </div>
       <h1>${t.welcome_title}</h1>
       <p class="welcome-tagline">${t.welcome_subtitle}</p>
-
       ${resumeBlock}
-
       <p class="welcome-invitation">${t.welcome_invitation}</p>
-
       <div class="welcome-card">
         <h3>${t.welcome_intro_h}</h3>
         <p>${t.welcome_intro_p}</p>
       </div>
-
       <div class="welcome-card">
         <h3>${t.welcome_features_h}</h3>
-        <ul class="welcome-bullets">
-          ${t.welcome_features.map(f => `<li>${f}</li>`).join('')}
-        </ul>
+        <ul class="welcome-bullets">${t.welcome_features.map(f => `<li>${f}</li>`).join('')}</ul>
       </div>
-
       ${!hasSaved ? `<button class="btn btn-primary" style="max-width:300px; margin: 16px auto 0; display:block;" onclick="startQuestionnaire()">${t.btn_start}</button>` : ''}
-    </div>
-  `;
+    </div>`;
 }
 
 function renderQuestion() {
   const t = T[state.lang];
   const applicableQs = getApplicableQuestions();
   const q = applicableQs[state.currentQuestionIdx];
-  if (!q) {
-    state.currentScreen = 'confirm';
-    render();
-    return;
-  }
-
-  // Update progress
+  if (!q) { state.currentScreen = 'confirm'; render(); return; }
   const total = applicableQs.length;
   const current = state.currentQuestionIdx + 1;
   const progressPct = (current / total) * 100;
-  document.getElementById('progressFill').style.width = `${progressPct}%`;
-  document.getElementById('progressLabel').textContent = `${t.progress_q} ${current} ${t.progress_of} ${total}`;
-
-  // Improved time estimate: weight by question type and complexity
-  // Average reading + decision times (in seconds):
-  //   single (short): 25s, single (long, 6+ options): 40s
-  //   multi: 50s (more deliberation)
-  //   likert: 30s
-  //   text (open): 60s
-  //   single_dynamic: 35s
+  const progressFill = document.getElementById('progressFill');
+  progressFill.style.width = progressPct + '%';
+  document.querySelector('.progress-bar').setAttribute('aria-valuenow', Math.round(progressPct));
+  document.getElementById('progressLabel').textContent = t.progress_q + ' ' + current + ' ' + t.progress_of + ' ' + total;
   let remainingSeconds = 0;
   for (let i = state.currentQuestionIdx; i < total; i++) {
     const qq = applicableQs[i];
@@ -2455,124 +901,68 @@ function renderQuestion() {
     else if (qq.type === 'single_dynamic') remainingSeconds += 35;
     else if (qq.type === 'single' && optsLen >= 6) remainingSeconds += 40;
     else remainingSeconds += 25;
-    // Add halo demo overhead for q9
     if (qq.showHaloDemo) remainingSeconds += 15;
-    // Add infoBlock reading time
     if (qq.infoBlock) remainingSeconds += 10;
   }
   const remainingMin = Math.max(1, Math.round(remainingSeconds / 60));
-  document.getElementById('progressTime').textContent = `~${remainingMin} min`;
-
-  // Encouragement message
+  document.getElementById('progressTime').textContent = '~' + remainingMin + ' min';
   const msgEl = document.getElementById('progressMessage');
-  if (current === Math.floor(total / 2)) {
-    msgEl.textContent = t.halfway;
-  } else if (current === total - 2) {
-    msgEl.textContent = t.near_done;
-  } else {
-    msgEl.textContent = '';
-  }
-
+  if (current === Math.floor(total / 2)) msgEl.textContent = t.halfway;
+  else if (current === total - 2) msgEl.textContent = t.near_done;
+  else msgEl.textContent = '';
   const sectionLabel = SECTIONS[q.section][state.lang];
   const helperText = q.helper ? q.helper[state.lang] : '';
   const optionalLabel = q.optional ? `<span style="color:var(--grey-light); font-weight:normal;"> · ${t.optional}</span>` : '';
-
   let optionsHTML = '';
-
   if (q.type === 'single' || q.type === 'single_dynamic') {
     let opts;
-    if (q.type === 'single_dynamic') {
-      opts = q.dynamicOptions(state.answers) || [];
-    } else {
-      opts = q.options[state.lang];
-    }
+    if (q.type === 'single_dynamic') opts = q.dynamicOptions(state.answers) || [];
+    else opts = q.options[state.lang];
     const selected = state.answers[q.id];
-    optionsHTML = `<div class="options">
-      ${opts.map((opt, i) => `
-        <button class="option ${selected === i ? 'selected' : ''}" onclick="selectOption('${q.id}', ${i}, false)">
-          <div class="option-mark"></div>
+    optionsHTML = '<div class="options" role="radiogroup">' + opts.map((opt, i) => `
+        <button class="option ${selected === i ? 'selected' : ''}" role="radio" aria-checked="${selected === i}" onclick="selectOption('${q.id}', ${i}, false)">
+          <div class="option-mark" aria-hidden="true"></div>
           <div>${opt}</div>
-        </button>
-      `).join('')}
-    </div>`;
+        </button>`).join('') + '</div>';
   } else if (q.type === 'multi') {
     const selected = state.answers[q.id] || [];
-    optionsHTML = `<div class="options">
-      ${q.options[state.lang].map((opt, i) => `
-        <button class="option multi ${selected.includes(i) ? 'selected' : ''}" onclick="selectOption('${q.id}', ${i}, true)">
-          <div class="option-mark"></div>
+    optionsHTML = '<div class="options" role="group">' + q.options[state.lang].map((opt, i) => `
+        <button class="option multi ${selected.includes(i) ? 'selected' : ''}" role="checkbox" aria-checked="${selected.includes(i)}" onclick="selectOption('${q.id}', ${i}, true)">
+          <div class="option-mark" aria-hidden="true"></div>
           <div>${opt}</div>
-        </button>
-      `).join('')}
-    </div>`;
+        </button>`).join('') + '</div>';
   } else if (q.type === 'likert') {
     const selected = state.answers[q.id];
-    optionsHTML = `<div class="likert">
-      ${q.options[state.lang].map((opt, i) => `
-        <button class="likert-option ${selected === i ? 'selected' : ''}" onclick="selectOption('${q.id}', ${i}, false)">
-          <div class="likert-num">${i + 1}</div>
+    optionsHTML = '<div class="likert" role="radiogroup">' + q.options[state.lang].map((opt, i) => `
+        <button class="likert-option ${selected === i ? 'selected' : ''}" role="radio" aria-checked="${selected === i}" onclick="selectOption('${q.id}', ${i}, false)">
+          <div class="likert-num" aria-hidden="true">${i + 1}</div>
           <div>${opt}</div>
-        </button>
-      `).join('')}
-    </div>`;
+        </button>`).join('') + '</div>';
   } else if (q.type === 'text') {
     const value = state.answers[q.id] || '';
     optionsHTML = `
-      <textarea class="text-input" maxlength="500" placeholder="${state.lang === 'es' ? 'Su respuesta...' : 'Your answer...'}" oninput="setText('${q.id}', this.value)">${value}</textarea>
-      <div style="text-align:right; color:var(--grey-light); font-size:0.8em; margin-top:6px;">
-        <span id="charCount">${value.length}</span> / 500
-      </div>
-    `;
+      <textarea class="text-input" maxlength="500" placeholder="${state.lang === 'es' ? 'Su respuesta...' : 'Your answer...'}" oninput="setText('${q.id}', this.value)" aria-label="${q.q[state.lang]}">${value}</textarea>
+      <div style="text-align:right; color:var(--grey-light); font-size:0.8em; margin-top:6px;"><span id="charCount">${value.length}</span> / 500</div>`;
   }
-
-  // Halo demo
   let haloDemoHTML = '';
   if (q.showHaloDemo) {
-    haloDemoHTML = `
-      <div class="halo-demo">
-        <svg width="140" height="140" viewBox="0 0 140 140">
-          <defs>
-            <radialGradient id="halo">
-              <stop offset="0%" stop-color="rgba(255,255,200,0.95)"/>
-              <stop offset="20%" stop-color="rgba(255,240,150,0.6)"/>
-              <stop offset="55%" stop-color="rgba(255,220,100,0.2)"/>
-              <stop offset="100%" stop-color="rgba(255,220,100,0)"/>
-            </radialGradient>
-          </defs>
-          <rect width="140" height="140" fill="#1a1a2e"/>
-          <circle cx="70" cy="70" r="60" fill="url(#halo)"/>
-          <circle cx="70" cy="70" r="6" fill="white"/>
-        </svg>
-        <div class="halo-demo-label">${state.lang === 'es' ? 'Así se ve un halo suave alrededor de una luz' : 'This is what a soft halo around a light looks like'}</div>
-      </div>
-    `;
+    haloDemoHTML = `<div class="halo-demo">${HALO_DEMO_SVG}<div class="halo-demo-label">${state.lang === 'es' ? 'Tres fenómenos visuales nocturnos que pueden ocurrir tras cirugía ocular' : 'Three nighttime visual phenomena that can occur after eye surgery'}</div></div>`;
   }
-
-  // Info block
   let infoBlockHTML = '';
-  if (q.infoBlock) {
-    infoBlockHTML = `<div class="info-block">${q.infoBlock[state.lang]}</div>`;
-  }
-
-  // Urgent message — shown when the urgent option is selected
+  if (q.infoBlock) infoBlockHTML = `<div class="info-block">${q.infoBlock[state.lang]}</div>`;
   let urgentMessageHTML = '';
   if (q.urgentOption !== undefined && q.urgentMessage) {
     const selected = state.answers[q.id];
     const isUrgent = (q.type === 'single' && selected === q.urgentOption) ||
-                     (q.type === 'multi' && Array.isArray(selected) && selected.includes(q.urgentOption));
-    if (isUrgent) {
-      urgentMessageHTML = `<div class="urgent-message">${q.urgentMessage[state.lang]}</div>`;
-    }
+      (q.type === 'multi' && Array.isArray(selected) && selected.includes(q.urgentOption));
+    if (isUrgent) urgentMessageHTML = `<div class="urgent-message" role="alert">${q.urgentMessage[state.lang]}</div>`;
   }
-
-  // Navigation
   const hasAnswer = state.answers[q.id] !== undefined &&
     (q.type !== 'multi' || (Array.isArray(state.answers[q.id]) && state.answers[q.id].length > 0)) &&
     (q.type !== 'text' || q.optional || (state.answers[q.id] && state.answers[q.id].length > 0));
   const canSkip = q.optional;
   const canProceed = hasAnswer || canSkip;
   const isLast = state.currentQuestionIdx === applicableQs.length - 1;
-
   document.getElementById('main').innerHTML = `
     <div class="question-card">
       <div class="section-tag">${sectionLabel}</div>
@@ -2587,285 +977,141 @@ function renderQuestion() {
         ${isLast ? `
           <button class="btn btn-secondary" ${!canProceed ? 'disabled' : ''} onclick="goToReview()">${t.btn_review}</button>
           <button class="btn btn-primary" ${!canProceed ? 'disabled' : ''} onclick="skipReview()">${t.btn_finish}</button>
-        ` : `
-          <button class="btn btn-primary" ${!canProceed ? 'disabled' : ''} onclick="nextQuestion()">${t.btn_next}</button>
-        `}
+        ` : `<button class="btn btn-primary" ${!canProceed ? 'disabled' : ''} onclick="nextQuestion()">${t.btn_next}</button>`}
       </div>
-    </div>
-  `;
+    </div>`;
 }
 
 function renderConfirmation() {
   const t = T[state.lang];
   const applicableQs = getApplicableQuestions();
-
-  let summaryHTML = applicableQs.map(q => {
-    const ans = state.answers[q.id];
-    let displayValue = '';
-
-    if (q.type === 'single') {
-      displayValue = ans !== undefined ? q.options[state.lang][ans] : '—';
-    } else if (q.type === 'single_dynamic') {
-      const opts = q.dynamicOptions(state.answers) || [];
-      displayValue = ans !== undefined ? opts[ans] : '—';
-    } else if (q.type === 'multi') {
-      displayValue = (Array.isArray(ans) && ans.length > 0)
-        ? ans.map(i => q.options[state.lang][i]).join(', ')
-        : '—';
-    } else if (q.type === 'likert') {
-      displayValue = ans !== undefined ? `${ans + 1}. ${q.options[state.lang][ans]}` : '—';
-    } else if (q.type === 'text') {
-      displayValue = ans && ans.trim() ? ans : (q.optional ? (state.lang === 'es' ? 'Sin comentarios' : 'No comments') : '—');
-    }
-
-    return `<div class="confirmation-item">
-      <div class="confirmation-label">${q.q[state.lang]}</div>
-      <div class="confirmation-value">${displayValue}</div>
-    </div>`;
-  }).join('');
-
+  // Agrupar por sección — UI/UX mejora
+  const grouped = { s1: [], s2: [], s3: [], s4: [] };
+  applicableQs.forEach(q => { if (grouped[q.section]) grouped[q.section].push(q); });
+  let summaryHTML = '';
+  ['s1', 's2', 's3', 's4'].forEach(secKey => {
+    if (grouped[secKey].length === 0) return;
+    summaryHTML += `<div class="confirmation-section">
+      <div class="confirmation-section-header">${SECTIONS[secKey][state.lang]}</div>
+      <div class="confirmation-summary">`;
+    grouped[secKey].forEach(q => {
+      const ans = state.answers[q.id];
+      let displayValue = '';
+      if (q.type === 'single') displayValue = ans !== undefined ? q.options[state.lang][ans] : '—';
+      else if (q.type === 'single_dynamic') {
+        const opts = q.dynamicOptions(state.answers) || [];
+        displayValue = ans !== undefined ? opts[ans] : '—';
+      } else if (q.type === 'multi') {
+        displayValue = (Array.isArray(ans) && ans.length > 0) ? ans.map(i => q.options[state.lang][i]).join(', ') : '—';
+      } else if (q.type === 'likert') {
+        displayValue = ans !== undefined ? `${ans + 1}. ${q.options[state.lang][ans]}` : '—';
+      } else if (q.type === 'text') {
+        displayValue = ans && ans.trim() ? ans : (q.optional ? (state.lang === 'es' ? 'Sin comentarios' : 'No comments') : '—');
+      }
+      summaryHTML += `<div class="confirmation-item"><div class="confirmation-label">${q.q[state.lang]}</div><div class="confirmation-value">${displayValue}</div></div>`;
+    });
+    summaryHTML += `</div></div>`;
+  });
   document.getElementById('main').innerHTML = `
     <div class="confirmation">
       <h2>${t.confirm_title}</h2>
       <p style="color:var(--grey); margin-top:8px;">${t.confirm_intro}</p>
-      <div class="confirmation-summary">
-        ${summaryHTML}
-      </div>
+      ${summaryHTML}
       <div class="btn-row">
         <button class="btn btn-secondary" onclick="goBackFromConfirm()">${t.btn_back}</button>
         <button class="btn btn-primary" onclick="submitQuestionnaire()">${t.btn_submit}</button>
       </div>
-    </div>
-  `;
-}
-
-function buildTechCard(tech) {
-  const isES = state.lang === 'es';
-  if (tech === 'femto') {
-    return `
-      <div class="tech-card">
-        <div class="tech-card-header">
-          <span class="tech-card-name">Femto</span>
-          <span class="tech-card-badge">${isES ? 'Exclusivo iOPR en PR' : 'Exclusive at iOPR in PR'}</span>
-        </div>
-        <div class="tech-card-subtitle">${isES ? 'Cirugía de catarata asistida por láser de femtosegundo' : 'Femtosecond laser-assisted cataract surgery'}</div>
-        <p class="tech-card-desc">
-          ${isES
-            ? 'Es una tecnología que utiliza un láser ultrarrápido para realizar varios pasos de la cirugía de catarata con mayor precisión que la técnica manual. Para perfiles que se inclinan hacia opciones avanzadas (como Visión Equilibrada o Completa), o cuando hay astigmatismo significativo, el Femto puede ofrecer mayor precisión en la colocación del lente intraocular y en la corrección del astigmatismo.'
-            : 'A technology that uses an ultra-fast laser to perform several steps of cataract surgery with more precision than the manual technique. For profiles leaning toward advanced options (like Visión Equilibrada or Completa), or when significant astigmatism is present, Femto can offer greater precision in intraocular lens placement and astigmatism correction.'}
-        </p>
-      </div>
-    `;
-  }
-  if (tech === 'plus') {
-    return `
-      <div class="tech-card">
-        <div class="tech-card-header">
-          <span class="tech-card-name">WaveLight Plus</span>
-          <span class="tech-card-badge">${isES ? 'Exclusivo iOPR en PR' : 'Exclusive at iOPR in PR'}</span>
-        </div>
-        <div class="tech-card-subtitle">${isES ? 'LASIK personalizado guiado por inteligencia artificial' : 'AI-guided personalized LASIK'}</div>
-        <p class="tech-card-desc">
-          ${isES
-            ? 'Es una tecnología que mide más de 100,000 puntos de su ojo para crear un mapa tridimensional único, y guía el láser de forma personalizada. Para perfiles que valoran la calidad visual nocturna, profesiones con demandas visuales altas, o conducción frecuente de noche, el WaveLight Plus puede reducir más eficazmente los halos y resplandores que pueden aparecer con LASIK convencional.'
-            : 'A technology that measures over 100,000 points of your eye to create a unique three-dimensional map, and guides the laser in a personalized way. For profiles that value nighttime visual quality, professions with high visual demands, or frequent night driving, WaveLight Plus may more effectively reduce halos and glare that can occur with conventional LASIK.'}
-        </p>
-      </div>
-    `;
-  }
-  return '';
+    </div>`;
 }
 
 function renderOutput() {
   const t = T[state.lang];
   const result = calculateOutput();
-
-  const tierColorMap = {
-    esencial: 'var(--sand)',
-    activa: 'var(--light-blue)',
-    completa: 'var(--light-teal)',
-    medida: 'var(--light-amber)'
-  };
-
+  // Mensaje calibrado de Equilibrada para ambos casos (Monofocal Plus y Apthera IC-8)
   const tierMessageMap = {
-    esencial: state.lang === 'es'
-      ? 'Sus respuestas sugieren que prioriza la calidad de imagen y acepta usar espejuelos según preferencia.'
-      : 'Your answers suggest you prioritize image quality and accept using glasses by preference.',
-    activa: state.lang === 'es'
-      ? 'Sus respuestas sugieren que busca buena visión de lejos e intermedia con calidad de imagen, manteniendo espejuelos para lectura cercana cuando lo desee.'
-      : 'Your answers suggest you seek good distance and intermediate vision with image quality, keeping reading glasses when desired.',
-    completa: state.lang === 'es'
-      ? 'Sus respuestas sugieren que busca independencia funcional de espejuelos en las tres distancias.'
-      : 'Your answers suggest you seek functional independence from glasses at all three distances.',
-    medida: state.lang === 'es'
-      ? 'Sus respuestas sugieren que su caso requiere una evaluación clínica especializada para identificar la solución que mejor encaje con sus ojos.'
-      : 'Your answers suggest your case requires specialized clinical evaluation to identify the best solution.'
+    esencial: state.lang === 'es' ? 'Sus respuestas sugieren que prioriza la calidad de imagen y acepta usar espejuelos según preferencia.' : 'Your answers suggest you prioritize image quality and accept using glasses by preference.',
+    equilibrada: state.lang === 'es' ? 'Sus respuestas sugieren que busca un balance entre calidad de imagen y funcionalidad, con buena visión a múltiples distancias. En la consulta, su clínico determinará la opción específica dentro de este perfil que mejor encaje con la anatomía y necesidades de su caso.' : 'Your answers suggest you seek a balance between image quality and functionality, with good vision at multiple distances. At your consultation, your clinician will determine the specific option within this profile that best fits your case anatomy and needs.',
+    completa: state.lang === 'es' ? 'Sus respuestas sugieren que busca independencia funcional de espejuelos en las tres distancias.' : 'Your answers suggest you seek functional independence from glasses at all three distances.'
   };
-
   document.getElementById('main').innerHTML = `
     <div class="output-screen">
       <div class="output-banner">
         <h2>${t.output_title}</h2>
         <p>${t.output_intro}</p>
       </div>
-
       <div class="output-section">
         <h3>${t.output_summary_h}</h3>
         <p>${tierMessageMap[result.tierLabel]}</p>
       </div>
-
       <div class="output-section">
         <h3>${t.output_next_h}</h3>
         <p>${t.output_next_p}</p>
       </div>
-
-      ${result.techRecommendations.length > 0 ? `
-      <div class="output-section tech-recommendation">
-        <h3>${state.lang === 'es' ? 'Tecnologías que pudieran considerarse en su caso' : 'Technologies that may be considered in your case'}</h3>
-        <p style="margin-bottom: 14px;">
-          ${state.lang === 'es'
-            ? 'Su perfil sugiere que pudiera beneficiarse de tecnologías avanzadas que iOPR ofrece de forma exclusiva en Puerto Rico. Su clínico evaluará en consulta si aplican para su caso específico.'
-            : 'Your profile suggests you may benefit from advanced technologies that iOPR offers exclusively in Puerto Rico. Your clinician will evaluate during the consultation whether they apply to your specific case.'}
-        </p>
-        ${result.techRecommendations.map(rec => buildTechCard(rec.tech)).join('')}
-        <p style="margin-top: 14px; font-size: 0.88em; color: var(--grey); font-style: italic;">
-          ${state.lang === 'es'
-            ? 'Esta es una orientación basada en sus respuestas, no una recomendación clínica. La decisión final siempre dependerá de la evaluación de su clínico.'
-            : 'This is guidance based on your answers, not a clinical recommendation. The final decision always depends on your clinician\'s evaluation.'}
-        </p>
-      </div>
-      ` : ''}
-
-      <div class="toggle-clinical" onclick="toggleClinical()">
-        ${state.showClinical ? '▲' : '▼'} ${t.output_clinical_h}
-      </div>
-
+      <button class="toggle-clinical" onclick="toggleClinical()" aria-expanded="${state.showClinical}">${state.showClinical ? '▲' : '▼'} ${t.output_clinical_h}</button>
       <div class="clinical-output ${state.showClinical ? 'visible' : ''}">
         <div class="clinical-section" style="background: var(--sand-light);">
           <p style="font-size:0.85em; color:var(--grey); font-style:italic;">${t.output_clinical_p}</p>
         </div>
-
         <div class="clinical-section">
           <h4>Recomendaciones tentativas</h4>
-          <div class="clinical-line">
-            <div class="clinical-label">Vía clínica:</div>
-            <div class="clinical-value"><span class="badge badge-via">${result.viaCode}</span> ${result.via}</div>
-          </div>
-          <div class="clinical-line">
-            <div class="clinical-label">Tier tentativo:</div>
-            <div class="clinical-value"><span class="badge badge-tier">${result.tier}</span></div>
-          </div>
-          ${result.redFlags.length > 0 ? `
-            <div class="clinical-line" style="margin-top:12px;">
-              <div class="clinical-label">Banderas rojas:</div>
-              <div class="clinical-value">
-                ${result.redFlags.map(f => `<div style="margin-bottom:8px;"><span class="badge badge-red">${f.label}</span><div style="font-size:0.85em; color:#666; margin-top:4px;">${f.detail}</div></div>`).join('')}
-              </div>
-            </div>
-          ` : ''}
-          ${result.yellowFlags.length > 0 ? `
-            <div class="clinical-line" style="margin-top:8px;">
-              <div class="clinical-label">Banderas amarillas:</div>
-              <div class="clinical-value">
-                ${result.yellowFlags.map(f => `<div style="margin-bottom:8px;"><span class="badge badge-yellow">${f.label}</span><div style="font-size:0.85em; color:#666; margin-top:4px;">${f.detail}</div></div>`).join('')}
-              </div>
-            </div>
-          ` : ''}
-          ${result.greenFlags.length > 0 ? `
-            <div class="clinical-line" style="margin-top:8px;">
-              <div class="clinical-label">Banderas verdes:</div>
-              <div class="clinical-value">
-                ${result.greenFlags.map(f => `<div style="margin-bottom:8px;"><span class="badge badge-green">${f.label}</span><div style="font-size:0.85em; color:#666; margin-top:4px;">${f.detail}</div></div>`).join('')}
-              </div>
-            </div>
-          ` : ''}
+          <div class="clinical-line"><div class="clinical-label">Vía clínica:</div><div class="clinical-value"><span class="badge badge-via">${result.viaCode}</span> ${result.via}</div></div>
+          <div class="clinical-line"><div class="clinical-label">Tier tentativo:</div><div class="clinical-value"><span class="badge badge-tier">${result.tier}</span></div></div>
+          ${result.redFlags.length > 0 ? `<div class="clinical-line" style="margin-top:12px;"><div class="clinical-label">Banderas rojas:</div><div class="clinical-value">${result.redFlags.map(f => `<div style="margin-bottom:8px;"><span class="badge badge-red">${f.label}</span><div style="font-size:0.85em; color:#666; margin-top:4px;">${f.detail}</div></div>`).join('')}</div></div>` : ''}
+          ${result.yellowFlags.length > 0 ? `<div class="clinical-line" style="margin-top:8px;"><div class="clinical-label">Banderas amarillas:</div><div class="clinical-value">${result.yellowFlags.map(f => `<div style="margin-bottom:8px;"><span class="badge badge-yellow">${f.label}</span><div style="font-size:0.85em; color:#666; margin-top:4px;">${f.detail}</div></div>`).join('')}</div></div>` : ''}
+          ${result.greenFlags.length > 0 ? `<div class="clinical-line" style="margin-top:8px;"><div class="clinical-label">Banderas verdes:</div><div class="clinical-value">${result.greenFlags.map(f => `<div style="margin-bottom:8px;"><span class="badge badge-green">${f.label}</span><div style="font-size:0.85em; color:#666; margin-top:4px;">${f.detail}</div></div>`).join('')}</div></div>` : ''}
         </div>
-
         <div class="clinical-section">
           <h4>Cómo el paciente respondió</h4>
           <div class="clinical-narrative">${result.narrative}</div>
         </div>
-
         <div class="clinical-section">
           <h4>Reglas algorítmicas aplicadas</h4>
           ${result.appliedRules.map(r => `<div class="rule-trace">${r}</div>`).join('')}
-          <div style="margin-top:12px; font-size:0.85em; color:var(--grey);">
-            <strong>Scores tier:</strong>
-            Esencial ${result.tierScores.esencial} ·
-            Equilibrada ${result.tierScores.activa} ·
-            Completa ${result.tierScores.completa} ·
-            Combinada ${result.tierScores.medida}
-          </div>
-          <div style="margin-top:6px; font-size:0.85em; color:var(--grey);">
-            <strong>Scores tecnología:</strong>
-            Femto ${result.techScores.femto} ·
-            WaveLight Plus ${result.techScores.plus}
-            ${result.techRecommendations.length > 0 ? '<span style="color:var(--azure);"> · sugerida(s) en banderas amarillas</span>' : '<span style="color:#999;"> · ninguna sugerida</span>'}
-          </div>
-          <div style="margin-top:8px; font-size:0.8em; color:#888; font-style:italic; line-height:1.4;">
-            Nota: Visión Combinada (mix &amp; match) no es asignada por el algoritmo — queda reservada para casos donde el cirujano determine clínicamente que combinar approaches o lentes entre los dos ojos es la mejor estrategia post-evaluación. Tecnologías sugeridas (Femto, WaveLight Plus) son señales basadas en el perfil del paciente — la indicación final depende de exámenes clínicos (densidad de catarata, topografía, aberrometría, etc.).
-          </div>
+          <div style="margin-top:12px; font-size:0.85em; color:var(--grey);"><strong>Scores tier:</strong> Esencial ${result.tierScores.esencial} · Equilibrada ${result.tierScores.equilibrada} · Completa ${result.tierScores.completa}</div>
         </div>
       </div>
-
       <div style="padding: 24px; text-align:center; display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
-        <button class="btn btn-secondary" style="min-width:200px;" onclick="downloadSummary()">
-          ${state.lang === 'es' ? '📄 Descargar resumen' : '📄 Download summary'}
-        </button>
-        <button class="btn btn-secondary" style="min-width:200px;" onclick="shareSummary()">
-          ${state.lang === 'es' ? '✉ Compartir / Enviar' : '✉ Share / Send'}
-        </button>
+        <button class="btn btn-secondary" style="min-width:200px;" onclick="downloadSummary()">${state.lang === 'es' ? '📄 Descargar resumen' : '📄 Download summary'}</button>
+        <button class="btn btn-secondary" style="min-width:200px;" onclick="shareSummary()">${state.lang === 'es' ? '✉ Compartir / Enviar' : '✉ Share / Send'}</button>
         <button class="btn btn-primary" style="min-width:200px;" onclick="restartDemo()">${state.lang === 'es' ? 'Reiniciar demo' : 'Restart demo'}</button>
       </div>
-    </div>
-  `;
+    </div>`;
 }
 
-// ========== EXPORT FUNCTIONS ==========
 function buildSummaryText() {
-  const t = T[state.lang];
   const result = calculateOutput();
   const applicableQs = getApplicableQuestions();
   const isES = state.lang === 'es';
-
   let lines = [];
   lines.push(isES ? 'CUESTIONARIO VIXION COMPASS — RESUMEN' : 'VIXION COMPASS QUESTIONNAIRE — SUMMARY');
   lines.push('Instituto de Ojos de Puerto Rico · iopr.com');
-  lines.push(isES ? `Fecha: ${new Date().toLocaleDateString('es-PR')}` : `Date: ${new Date().toLocaleDateString('en-US')}`);
+  lines.push(isES ? 'Fecha: ' + new Date().toLocaleDateString('es-PR') : 'Date: ' + new Date().toLocaleDateString('en-US'));
   lines.push('');
   lines.push(isES ? '=== SUS RESPUESTAS ===' : '=== YOUR ANSWERS ===');
   lines.push('');
-
   applicableQs.forEach(q => {
     const ans = state.answers[q.id];
     let displayValue = '—';
-    if (q.type === 'single') {
-      displayValue = ans !== undefined ? q.options[state.lang][ans] : '—';
-    } else if (q.type === 'single_dynamic') {
+    if (q.type === 'single') displayValue = ans !== undefined ? q.options[state.lang][ans] : '—';
+    else if (q.type === 'single_dynamic') {
       const opts = q.dynamicOptions(state.answers) || [];
       displayValue = ans !== undefined ? opts[ans] : '—';
     } else if (q.type === 'multi') {
-      displayValue = (Array.isArray(ans) && ans.length > 0)
-        ? ans.map(i => q.options[state.lang][i]).join('; ')
-        : '—';
+      displayValue = (Array.isArray(ans) && ans.length > 0) ? ans.map(i => q.options[state.lang][i]).join('; ') : '—';
     } else if (q.type === 'likert') {
-      displayValue = ans !== undefined ? `${ans + 1}. ${q.options[state.lang][ans]}` : '—';
+      displayValue = ans !== undefined ? (ans + 1) + '. ' + q.options[state.lang][ans] : '—';
     } else if (q.type === 'text') {
       displayValue = ans && ans.trim() ? ans : (isES ? 'Sin comentarios' : 'No comments');
     }
-    lines.push(`• ${q.q[state.lang]}`);
-    lines.push(`  ${displayValue}`);
+    lines.push('• ' + q.q[state.lang]);
+    lines.push('  ' + displayValue);
     lines.push('');
   });
-
   lines.push(isES ? '=== ORIENTACIÓN PRELIMINAR ===' : '=== PRELIMINARY GUIDANCE ===');
   lines.push('');
-  lines.push(isES
-    ? 'Su clínico revisará estas respuestas antes de su consulta. En la cita, le orientará sobre cuál podría ser la mejor opción para su caso específico, basándose en lo que usted compartió y en los exámenes clínicos.'
-    : 'Your clinician will review these answers before your visit. At the appointment, they will guide you on what might be the best option for your specific case, based on what you shared and the clinical exams.');
+  lines.push(isES ? 'Su clínico revisará estas respuestas antes de su consulta. En la cita, le orientará sobre cuál podría ser la mejor opción para su caso específico, basándose en lo que usted compartió y en los exámenes clínicos.' : 'Your clinician will review these answers before your visit. At the appointment, they will guide you on what might be the best option for your specific case, based on what you shared and the clinical exams.');
   lines.push('');
   lines.push(isES ? 'Lleve este resumen a su consulta para facilitar la conversación.' : 'Bring this summary to your appointment to facilitate the conversation.');
-
   return lines.join('\n');
 }
 
@@ -2876,124 +1122,56 @@ function downloadSummary() {
   const a = document.createElement('a');
   a.href = url;
   const dateStr = new Date().toISOString().slice(0, 10);
-  a.download = `VixiOn_Compass_Resumen_${dateStr}.txt`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
+  a.download = 'VixiOn_Compass_Resumen_' + dateStr + '.txt';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
   setTimeout(() => URL.revokeObjectURL(url), 100);
 }
 
 function shareSummary() {
   const text = buildSummaryText();
   const isES = state.lang === 'es';
-
-  // Use native Web Share API if available (mobile, modern browsers)
   if (navigator.share) {
-    navigator.share({
-      title: isES ? 'Mi resumen VixiOn Compass' : 'My VixiOn Compass Summary',
-      text: text
-    }).catch(err => {
-      // User cancelled or share failed — silently fallback to clipboard
-      copyToClipboard(text);
-    });
-  } else {
-    // Fallback: copy to clipboard
-    copyToClipboard(text);
-  }
+    navigator.share({ title: isES ? 'Mi resumen VixiOn Compass' : 'My VixiOn Compass Summary', text: text }).catch(err => copyToClipboard(text));
+  } else copyToClipboard(text);
 }
 
 function copyToClipboard(text) {
   const isES = state.lang === 'es';
   if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(text).then(() => {
-      alert(isES
-        ? '✓ Resumen copiado al portapapeles. Puede pegarlo en un correo o mensaje.'
-        : '✓ Summary copied to clipboard. You can paste it in an email or message.');
-    }).catch(() => {
-      fallbackCopy(text);
-    });
-  } else {
-    fallbackCopy(text);
-  }
+    navigator.clipboard.writeText(text).then(() => { alert(isES ? '✓ Resumen copiado al portapapeles. Puede pegarlo en un correo o mensaje.' : '✓ Summary copied to clipboard. You can paste it in an email or message.'); }).catch(() => fallbackCopy(text));
+  } else fallbackCopy(text);
 }
 
 function fallbackCopy(text) {
   const isES = state.lang === 'es';
   const textarea = document.createElement('textarea');
-  textarea.value = text;
-  textarea.style.position = 'fixed';
-  textarea.style.opacity = '0';
-  document.body.appendChild(textarea);
-  textarea.select();
-  try {
-    document.execCommand('copy');
-    alert(isES
-      ? '✓ Resumen copiado al portapapeles.'
-      : '✓ Summary copied to clipboard.');
-  } catch (e) {
-    alert(isES
-      ? 'No se pudo copiar automáticamente. Use el botón de descargar.'
-      : 'Could not copy automatically. Use the download button.');
-  }
+  textarea.value = text; textarea.style.position = 'fixed'; textarea.style.opacity = '0';
+  document.body.appendChild(textarea); textarea.select();
+  try { document.execCommand('copy'); alert(isES ? '✓ Resumen copiado al portapapeles.' : '✓ Summary copied to clipboard.'); }
+  catch (e) { alert(isES ? 'No se pudo copiar automáticamente. Use el botón de descargar.' : 'Could not copy automatically. Use the download button.'); }
   document.body.removeChild(textarea);
 }
 
-// ========== INTERACTION HANDLERS ==========
-function startQuestionnaire() {
-  state.currentScreen = 'questions';
-  state.currentQuestionIdx = 0;
-  render();
-}
+function startQuestionnaire() { state.currentScreen = 'questions'; state.currentQuestionIdx = 0; render(); }
 
 function selectOption(qId, value, isMulti) {
-  const q = QUESTIONS.find(x => x.id === qId);
   if (isMulti) {
     if (!Array.isArray(state.answers[qId])) state.answers[qId] = [];
     const idx = state.answers[qId].indexOf(value);
-
-    // For Q14 conditions, "Ninguna" (idx 10) and "No estoy seguro" (idx 11) are exclusive
     if (qId === 'q14_conditions') {
-      if (value === 10 || value === 11) {
-        state.answers[qId] = state.answers[qId].includes(value) ? [] : [value];
-      } else {
-        // Remove "Ninguna" / "No sure" if other selected
-        state.answers[qId] = state.answers[qId].filter(v => v !== 10 && v !== 11);
-        if (idx === -1) state.answers[qId].push(value);
-        else state.answers[qId].splice(idx, 1);
-      }
+      if (value === 10 || value === 11) state.answers[qId] = state.answers[qId].includes(value) ? [] : [value];
+      else { state.answers[qId] = state.answers[qId].filter(v => v !== 10 && v !== 11); if (idx === -1) state.answers[qId].push(value); else state.answers[qId].splice(idx, 1); }
     } else if (qId === 'q14_5_meds') {
-      if (value === 5 || value === 6) {
-        state.answers[qId] = state.answers[qId].includes(value) ? [] : [value];
-      } else {
-        state.answers[qId] = state.answers[qId].filter(v => v !== 5 && v !== 6);
-        if (idx === -1) state.answers[qId].push(value);
-        else state.answers[qId].splice(idx, 1);
-      }
+      if (value === 5 || value === 6) state.answers[qId] = state.answers[qId].includes(value) ? [] : [value];
+      else { state.answers[qId] = state.answers[qId].filter(v => v !== 5 && v !== 6); if (idx === -1) state.answers[qId].push(value); else state.answers[qId].splice(idx, 1); }
     } else if (qId === 'q3_1_magnitude') {
-      // "Prefiero que el clínico me oriente" (index 5) is exclusive
-      if (value === 5) {
-        state.answers[qId] = state.answers[qId].includes(5) ? [] : [5];
-      } else {
-        state.answers[qId] = state.answers[qId].filter(v => v !== 5);
-        if (idx === -1) state.answers[qId].push(value);
-        else state.answers[qId].splice(idx, 1);
-      }
+      if (value === 5) state.answers[qId] = state.answers[qId].includes(5) ? [] : [5];
+      else { state.answers[qId] = state.answers[qId].filter(v => v !== 5); if (idx === -1) state.answers[qId].push(value); else state.answers[qId].splice(idx, 1); }
     } else if (qId === 'q4_activities') {
-      // "Todas las anteriores son importantes" (index 7) is exclusive of others
-      if (value === 7) {
-        state.answers[qId] = state.answers[qId].includes(7) ? [] : [7];
-      } else {
-        state.answers[qId] = state.answers[qId].filter(v => v !== 7);
-        if (idx === -1) state.answers[qId].push(value);
-        else state.answers[qId].splice(idx, 1);
-      }
-    } else {
-      if (idx === -1) state.answers[qId].push(value);
-      else state.answers[qId].splice(idx, 1);
-    }
-  } else {
-    state.answers[qId] = value;
-  }
+      if (value === 7) state.answers[qId] = state.answers[qId].includes(7) ? [] : [7];
+      else { state.answers[qId] = state.answers[qId].filter(v => v !== 7); if (idx === -1) state.answers[qId].push(value); else state.answers[qId].splice(idx, 1); }
+    } else { if (idx === -1) state.answers[qId].push(value); else state.answers[qId].splice(idx, 1); }
+  } else { state.answers[qId] = value; }
   saveProgress();
   render();
 }
@@ -3008,92 +1186,37 @@ function setText(qId, value) {
 function nextQuestion() {
   const applicableQs = getApplicableQuestions();
   if (state.currentQuestionIdx < applicableQs.length - 1) {
-    state.currentQuestionIdx++;
-    saveProgress();
-    render();
+    state.currentQuestionIdx++; saveProgress(); render();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   } else {
-    state.currentScreen = 'confirm';
-    saveProgress();
-    render();
+    state.currentScreen = 'confirm'; saveProgress(); render();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
 
-function goToReview() {
-  // Go to confirm/review screen
-  state.currentScreen = 'confirm';
-  render();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function skipReview() {
-  // Skip review and go directly to output
-  state.currentScreen = 'output';
-  state.showClinical = false;
-  clearProgress();
-  render();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function prevQuestion() {
-  if (state.currentQuestionIdx > 0) {
-    state.currentQuestionIdx--;
-    saveProgress();
-    render();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-}
-
-function goBackFromConfirm() {
-  state.currentScreen = 'questions';
-  const applicableQs = getApplicableQuestions();
-  state.currentQuestionIdx = applicableQs.length - 1;
-  render();
-}
-
-function submitQuestionnaire() {
-  state.currentScreen = 'output';
-  state.showClinical = false;
-  clearProgress();
-  render();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function toggleClinical() {
-  state.showClinical = !state.showClinical;
-  render();
-}
-
+function goToReview() { state.currentScreen = 'confirm'; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+function skipReview() { state.currentScreen = 'output'; state.showClinical = false; clearProgress(); render(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+function prevQuestion() { if (state.currentQuestionIdx > 0) { state.currentQuestionIdx--; saveProgress(); render(); window.scrollTo({ top: 0, behavior: 'smooth' }); } }
+function goBackFromConfirm() { state.currentScreen = 'questions'; const applicableQs = getApplicableQuestions(); state.currentQuestionIdx = applicableQs.length - 1; render(); }
+function submitQuestionnaire() { state.currentScreen = 'output'; state.showClinical = false; clearProgress(); render(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+function toggleClinical() { state.showClinical = !state.showClinical; render(); }
 function restartDemo() {
-  state = {
-    currentScreen: 'welcome',
-    currentQuestionIdx: 0,
-    answers: {},
-    lang: state.lang,
-    sizeLevel: state.sizeLevel,
-    showClinical: false
-  };
+  state = { currentScreen: 'welcome', currentQuestionIdx: 0, answers: {}, lang: state.lang, sizeLevel: state.sizeLevel, showClinical: false };
   render();
 }
-
 function toggleLang() {
   state.lang = state.lang === 'es' ? 'en' : 'es';
   document.getElementById('langBtn').textContent = state.lang === 'es' ? 'EN' : 'ES';
   document.documentElement.lang = state.lang;
   render();
 }
-
 function cycleSize() {
   state.sizeLevel = (state.sizeLevel + 1) % 4;
   document.body.className = SIZES[state.sizeLevel];
   document.getElementById('sizeBtn').classList.toggle('active', state.sizeLevel > 0);
-  document.getElementById('sizeBtn').textContent = state.sizeLevel === 0 ? 'A+' : `A+${state.sizeLevel}`;
+  document.getElementById('sizeBtn').textContent = state.sizeLevel === 0 ? 'A+' : 'A+' + state.sizeLevel;
 }
-
-// Initial render
 render();
 </script>
-
 </body>
 </html>
